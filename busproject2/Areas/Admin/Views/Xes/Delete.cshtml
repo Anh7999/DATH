@@ -1,0 +1,90 @@
+﻿@model busproject2.Models.Xe
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+
+
+<h2>Xóa Xe</h2>
+<h3>Bạn Có Chắc Muốn Xóa Xe?</h3>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+
+                <form method="get" style="margin-left:350px">
+                    <div class="form-group  row">
+                        <dt>
+                            Tên Tài Xế
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:60px">
+                            @Html.DisplayFor(model => model.TaiXe.HoTen)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <dt>Tuyến Xe</dt>
+
+                        <div class="col-sm-10" style="margin-left:10px">
+                            @Html.DisplayFor(model => model.MaTuyen)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <dt>
+                            Biển Số
+                        </dt>
+                        <div class="col-sm-10" style="margin-left:10px">
+                            @Html.DisplayFor(model => model.BienSo)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <dt>
+                            Tình Trạng Xe
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.TinhTrangXe)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <dt>
+                            Loại Xe
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.LoaiXe)
+                        </div>
+                    </div>
+
+                </form>
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+             
+
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class="btn btn-danger btn-sm"  type="submit"> Xóa Xe</button>
+                    <button class="btn btn-white btn-sm" >  @Html.ActionLink("Quay Lại", "Index")</button>
+                </div>
+            </div>
+                }
+               
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+

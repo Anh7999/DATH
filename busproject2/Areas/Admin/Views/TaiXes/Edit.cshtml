@@ -1,0 +1,157 @@
+﻿@model busproject2.Models.TaiXe
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+
+<h2>Chỉnh Sửa Tài Xế</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+            <div class="ibox-content">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaTaiXe)
+                <form method="get">
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Họ Tên Tài Xế</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row" id="data_1">
+                        <label class="col-sm-2 col-form-label">Ngày Sinh</label>
+                        <div class="col-sm-10">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Giới Tính</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.GioiTinh)
+                            @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Số Điện Thoại</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @type = "text", @data_mask = "9999999999" } })
+                            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Gmail</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.Gmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Gmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Hình Ảnh</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "custom-file-input", @id = "logo", @type = "file", @placeholder = "" } })
+                            @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
+                            <label for="logo" class="custom-file-label">Choose file...</label>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Quê Quán</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.QueQuan, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.QueQuan, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Địa Chỉ</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group  row" id="data_1">
+                        <label class="col-sm-2 col-form-label">Ngày Bắt Đầu Hợp Đồng</label>
+                        <div class="col-sm-10">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                @Html.EditorFor(model => model.NgayBatDauHopDong, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NgayBatDauHopDong, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row" id="data_1">
+                        <label class="col-sm-2 col-form-label">Ngày Kết Thúc Hợp Đồng</label>
+                        <div class="col-sm-10">
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                @Html.EditorFor(model => model.NgayKetThucHopDong, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.NgayKetThucHopDong, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 col-form-label">Lương</label>
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.Luong, new { htmlAttributes = new { @class = "form-control", @type = "text", @data_mask = "99999999" } })
+                            @Html.ValidationMessageFor(model => model.Luong, "", new { @class = "text-danger" })
+
+                            <span class="form-text">99,999,999 VND</span>
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Bằng Lái</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.BangLai, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BangLai, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="hr-line-dashed"></div>
+                    <div class="form-group  row">
+                        <label class="col-sm-2 col-form-label">Chức Vụ</label>
+
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </form>
+                <div class="form-group row">
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <button class="btn btn-white btn-sm">   @Html.ActionLink("Quay Lại", "Index")</button>
+                        <button class="btn btn-primary btn-sm" type="submit">Thêm Mới Tài Xế</button>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+    </div>
+</div>

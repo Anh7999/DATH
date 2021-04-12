@@ -1,0 +1,64 @@
+﻿@using busproject2.Help
+@model IEnumerable<busproject2.Models.Ben>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h4>Quản Lý Bến Xe</h4>
+                    <p>
+                        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm Mới Bến Xe", "Create", "Create", "Bens", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary" })
+                    </p>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+
+                                    <th>
+                                        Tên Tuyến
+                                    </th>
+                                   
+                                    <th>
+                                        Chức Năng
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TenBen)
+                                        </td>
+                                      
+
+                                        <td>
+                                            @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-pencil'></span>", "Edit", "Edit", "Bens", routeValues: new { id = item.MaBen }, htmlAttributes: new { data_modal = "", @class = "btn btn-default" })
+                                            @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-zoom-in'></span>", "Detail", "Details", "Bens", routeValues: new { id = item.MaBen }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary" })
+                                            @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-trash'></span>", "Delete", "Delete", "Bens", routeValues: new { id = item.MaBen }, htmlAttributes: new { data_modal = "", @class = "btn btn-danger" })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
