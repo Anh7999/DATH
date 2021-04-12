@@ -26,8 +26,11 @@ namespace busproject2.Models
 
         public TimeSpan? ThoiGianKetThuc { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string LoaiTuyen { get; set; }
+
+        public int SoTuyen { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietLoTrinh> ChiTietLoTrinhs { get; set; }

@@ -9,8 +9,7 @@ namespace busproject2.Models
     [Table("ChiTietVeBan")]
     public partial class ChiTietVeBan
     {
-        public DateTime NgayBan { get; set; }
-        public int MaVeBan { get; set; }
+        public DateTime? NgayBan { get; set; }
 
         public int? SoLuongVeBan { get; set; }
 

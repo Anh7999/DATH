@@ -13,16 +13,15 @@ namespace busproject2.Models
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Ben> Bens { get; set; }
         public virtual DbSet<ChiTietLoTrinh> ChiTietLoTrinhs { get; set; }
         public virtual DbSet<ChiTietVeBan> ChiTietVeBans { get; set; }
+        public virtual DbSet<LoaiViPham> LoaiViPhams { get; set; }
         public virtual DbSet<TaiXe> TaiXes { get; set; }
         public virtual DbSet<TuyenXe> TuyenXes { get; set; }
         public virtual DbSet<VeXe> VeXes { get; set; }
+        public virtual DbSet<ViPham> ViPhams { get; set; }
         public virtual DbSet<Xe> Xes { get; set; }
-        public virtual DbSet<LoaiViPham> LoaiViPhams { get; set; }
-        public virtual DbSet<Vipham> Viphams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -42,17 +41,14 @@ namespace busproject2.Models
                 .Property(e => e.SDT)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Admin>()
-                .Property(e => e.TenTaiKhoan)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Admin>()
-                .Property(e => e.MatKhau)
-                .IsUnicode(false);
-
             modelBuilder.Entity<Ben>()
                 .HasMany(e => e.ChiTietLoTrinhs)
                 .WithRequired(e => e.Ben)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<LoaiViPham>()
+                .HasMany(e => e.ViPhams)
+                .WithRequired(e => e.LoaiViPham)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaiXe>()
@@ -66,6 +62,11 @@ namespace busproject2.Models
             modelBuilder.Entity<TaiXe>()
                 .Property(e => e.HinhAnh)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<TaiXe>()
+                .HasMany(e => e.ViPhams)
+                .WithRequired(e => e.TaiXe)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaiXe>()
                 .HasMany(e => e.Xes)
@@ -99,9 +100,6 @@ namespace busproject2.Models
                 .HasMany(e => e.ChiTietVeBans)
                 .WithRequired(e => e.Xe)
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<LoaiViPham>()
-                .Property(c => c.MaLoaiViPham)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }
