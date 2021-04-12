@@ -21,6 +21,8 @@ namespace busproject2.Models
         public virtual DbSet<TuyenXe> TuyenXes { get; set; }
         public virtual DbSet<VeXe> VeXes { get; set; }
         public virtual DbSet<Xe> Xes { get; set; }
+        public virtual DbSet<LoaiViPham> LoaiViPhams { get; set; }
+        public virtual DbSet<Vipham> Viphams { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -97,6 +99,9 @@ namespace busproject2.Models
                 .HasMany(e => e.ChiTietVeBans)
                 .WithRequired(e => e.Xe)
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<LoaiViPham>()
+                .Property(c => c.MaLoaiViPham)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
         }
     }
 }

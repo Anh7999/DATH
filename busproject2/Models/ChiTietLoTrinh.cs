@@ -9,17 +9,15 @@ namespace busproject2.Models
     [Table("ChiTietLoTrinh")]
     public partial class ChiTietLoTrinh
     {
-        [Key]
-        [Column(Order = 0)]
         public int ThuTu { get; set; }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaTuyen { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaBen { get; set; }
 

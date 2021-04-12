@@ -62,3 +62,11 @@ C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.csproj
 C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.dll
 C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.pdb
 C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.csprojAssemblyReference.cache
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddAddressToStudent.resources
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.csproj.GenerateResource.cache
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddAddressTo.resources
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddAdd2.resources
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddAdd3.resources
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddIndentity.resources
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddIndentity1.resources
+C:\Users\trung\Desktop\DATH\busproject2\busproject2\obj\Debug\busproject2.Migrations.AddIndentity2.resources

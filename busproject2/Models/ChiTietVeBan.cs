@@ -9,19 +9,18 @@ namespace busproject2.Models
     [Table("ChiTietVeBan")]
     public partial class ChiTietVeBan
     {
-        [Key]
-        [Column(Order = 0)]
+        public DateTime NgayBan { get; set; }
         public int MaVeBan { get; set; }
 
         public int? SoLuongVeBan { get; set; }
 
         [Key]
-        [Column(Order = 1)]
+        [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaVe { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaXe { get; set; }
 
