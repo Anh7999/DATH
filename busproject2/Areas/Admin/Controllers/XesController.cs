@@ -49,7 +49,7 @@ namespace busproject2.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,MaTuyen,MaTaiXe")] Xe xe)
+        public ActionResult Create([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,MaTuyen,MaTaiXe,lat,_long")] Xe xe)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace busproject2.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,MaTuyen,MaTaiXe")] Xe xe)
+        public ActionResult Edit([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,MaTuyen,MaTaiXe,lat,_long")] Xe xe)
         {
             if (ModelState.IsValid)
             {

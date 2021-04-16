@@ -31,6 +31,13 @@ namespace busproject2.Models
 
         public int MaTaiXe { get; set; }
 
+        [StringLength(50)]
+        public string lat { get; set; }
+
+        [Column("long")]
+        [StringLength(50)]
+        public string _long { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietVeBan> ChiTietVeBans { get; set; }
 

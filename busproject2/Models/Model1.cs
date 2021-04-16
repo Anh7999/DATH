@@ -97,6 +97,14 @@ namespace busproject2.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Xe>()
+                .Property(e => e.lat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Xe>()
+                .Property(e => e._long)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Xe>()
                 .HasMany(e => e.ChiTietVeBans)
                 .WithRequired(e => e.Xe)
                 .WillCascadeOnDelete(false);
