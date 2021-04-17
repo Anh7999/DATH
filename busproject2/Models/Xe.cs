@@ -46,6 +46,7 @@ namespace busproject2.Models
         public virtual TaiXe TaiXe { get; set; }
 
         public virtual TuyenXe TuyenXe { get; set; }
+<<<<<<< HEAD
 
 
         public static List<Xe> GetAllBusByMaTuyen(int maTuyen)
@@ -62,5 +63,7 @@ namespace busproject2.Models
             }
             return tuyenXes;
         }
+=======
+>>>>>>> 83c3816032b1ff0a1877be82162878be36d92794
     }
 }
