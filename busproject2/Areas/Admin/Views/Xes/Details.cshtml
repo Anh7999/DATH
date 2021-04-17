@@ -7,7 +7,6 @@
 
 
 
-
 <h2>Chi Tiết Xe</h2>
 <div class="row">
     <div class="col-lg-12">
@@ -53,10 +52,30 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <dt>
+                            Lat
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.lat)
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <dt>
-                          Loại Xe
+                            Long
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model._long)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <dt>
+                            Loại Xe
                         </dt>
 
                         <div class="col-sm-10" style="margin-left:50px">
@@ -77,4 +96,3 @@
 
     </div>
 </div>
-

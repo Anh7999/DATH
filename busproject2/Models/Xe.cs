@@ -31,11 +31,34 @@ namespace busproject2.Models
 
         public int MaTaiXe { get; set; }
 
+        [StringLength(50)]
+        public string lat { get; set; }
+
+        [Column("long")]
+        [StringLength(50)]
+        public string _long { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietVeBan> ChiTietVeBans { get; set; }
 
         public virtual TaiXe TaiXe { get; set; }
 
         public virtual TuyenXe TuyenXe { get; set; }
+
+
+        public static List<Xe> getAllTuyen()
+        {
+            List<Xe> tuyenXes = new List<Xe>();
+            using (var db = new Model1())
+            {
+                
+                var query = from b in db.Xes select b;
+                foreach (var item in query)
+                {
+                    tuyenXes.Add(item);
+                }
+            }
+            return tuyenXes;
+        }
     }
 }

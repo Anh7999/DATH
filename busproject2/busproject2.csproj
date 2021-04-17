@@ -3358,11 +3358,6 @@
     <Content Include="Areas\Admin\Conntent\fontawesome-free-5.15.3-web\webfonts\fa-solid-900.ttf" />
     <Content Include="Areas\Admin\Conntent\fontawesome-free-5.15.3-web\webfonts\fa-solid-900.woff" />
     <Content Include="Areas\Admin\Conntent\fontawesome-free-5.15.3-web\webfonts\fa-solid-900.woff2" />
-    <Content Include="Areas\Admin\Views\Xes\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Xes\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Xes\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Xes\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Xes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\TaiXes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\TaiXes\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\TaiXes\Details.cshtml" />
@@ -3379,6 +3374,11 @@
     <Content Include="Areas\Admin\Views\Bens\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Bens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Map\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Xes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Xes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Xes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Xes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Xes\Index.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
