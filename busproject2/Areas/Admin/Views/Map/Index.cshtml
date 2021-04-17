@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Map";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+
+}
+@*<ul class="mainmenu">
+    <li class="sub-handle">
+        Item 1
+        <ul class="submenu">
+            <li class="sub-li">item 1-1</li>
+            <li class="sub-li">item 1-2</li>
+            <li class="sub-li">item 1-1</li>
+        </ul>
+    </li>
+    <li class="sub-handle">
+        Item 2
+        <ul class="submenu">
+            <li class="sub-li">item 2-1</li>
+            <li class="sub-li">item 2-2</li>
+            <li class="sub-li">item 2-1</li>
+        </ul>
+    </li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+</ul>*@
+<div class="list-group mainmenu">
+    <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+        Alo
+    </button>
+    @foreach (var item in ViewBag.ListTuyen)
+    {
+<button type="button" class="list-group-item list-group-item-action sub-handle">
+    @item.TenTuyen
+    <ul class="submenu">
+        <li class="sub-li">item 1-1</li>
+        <li class="sub-li">item 1-2</li>
+        <li class="sub-li">item 1-1</li>
+    </ul>
+</button>
+    }
+</div>
+<div id="map"></div>

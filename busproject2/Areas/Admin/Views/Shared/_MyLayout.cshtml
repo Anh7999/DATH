@@ -6,7 +6,39 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 800px;
+        }
+        .submenu {
+            display: none;
+        }
 
+        .submenu.showing-sub {
+            display: block;
+        }
+    </style>
+    <script>
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8,
+            });
+            const image = "~/Areas/Admin/Conntent/Myimg/google-maps-bus-icon-14 (1).jpg"
+            new google.maps.Marker({
+                position: { lat: -34.397, lng: 150.644 },
+                map,
+                title: "Hello World!",
+/*  *//*              icon: image,*/
+            });
+        }
+        
+    </script>
     <title>Quản Lý Xe Bus</title>
 
     <link href="~/Areas/admin/Conntent/css/bootstrap.min.css" rel="stylesheet">
@@ -67,10 +99,6 @@
     <link href="~/Areas/admin/Conntent/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
 
     <link href="~/Areas/admin/Conntent/css/plugins/codemirror/codemirror.css" rel="stylesheet">
-
-
-
-
 </head>
 
 <body>
@@ -148,14 +176,14 @@
                 </nav>
             </div>
 
-            <div class="row">
+            @*<div class="row">
                 <div class="col-lg-12">
-                    <div class="wrapper wrapper-content">
-                        @RenderBody()
-                    </div>
+                    <div class="wrapper wrapper-content">*@
+            @RenderBody()
+            @*</div>
 
-                </div>
-            </div>
+                    </div>
+                </div>*@
             <div class="footer">
                 <div class="float-right">
 
@@ -256,38 +284,6 @@
 
     <script src="~/Areas/admin/Conntent/js/plugins/codemirror/codemirror.js"></script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false" type="text/javascript"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script>
-
-        var mapcode;
-        var diag;
-        function initialize() {
-            mapcode = new google.maps.Geocoder();
-            var lnt = new google.maps.LatLng(26.45, 82.85);
-            var diagChoice = {
-                zoom: 9,
-                center: lnt,
-                diagId: google.maps.MapTypeId.ROADMAP
-            }
-            diag = new google.maps.Map(document.getElementById('map_populate'), diagChoice);
-        }
-        function getmap() {
-            var completeaddress = document.getElementById('txt_location').value;
-            mapcode.geocode({ 'address': completeaddress }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    diag.setCenter(results[0].geometry.location);
-                    var hint = new google.maps.Marker({
-                        diag: diag,
-                        position: results[0].geometry.location
-                    });
-                } else {
-                    alert('Location Not Tracked. ' + status);
-                }
-            });
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
     <script>
         $(document).ready(function () {
 
@@ -888,6 +884,18 @@
 
             });
         </script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script>var sub_handle = $('.sub-handle');
+        var sub_nav_ul_li = $('nav .mainmenu .sub-li');
+        sub_handle.on('click', function () {
+            $(this).find(".submenu").toggleClass('showing-sub');
+            $(this).find(".sub-li").toggleClass("smooth-anchor");
+        });
+        sub_nav_ul_li.on('click', function () {
+            $(this).parent().toggleClass('showing-sub');
+            alert("sadfadsf");
+        });</script>
 </body>
 </html>
 

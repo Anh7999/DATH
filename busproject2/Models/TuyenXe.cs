@@ -5,10 +5,11 @@ namespace busproject2.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
-
+    using System.Linq;
     [Table("TuyenXe")]
     public partial class TuyenXe
     {
+        Model1 db = new Model1();
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TuyenXe()
         {
@@ -37,5 +38,19 @@ namespace busproject2.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Xe> Xes { get; set; }
+        public static List<TuyenXe> getAllTuyen()
+        {
+            List<TuyenXe> tuyenXes = new List<TuyenXe>();
+            using (var db = new Model1())
+            {
+                // Display all Blogs from the database
+                var query = from b in db.TuyenXes select b;
+                foreach (var item in query)
+                {
+                    tuyenXes.Add(item);
+                }
+            }
+            return tuyenXes;
+        }
     }
 }
