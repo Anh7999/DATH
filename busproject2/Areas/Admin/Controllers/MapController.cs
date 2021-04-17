@@ -12,13 +12,14 @@ namespace busproject2.Areas.Admin.Controllers
         // GET: Admin/Map
         private Model1 db = new Model1();
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
            ViewBag.ListTuyen = TuyenXe.getAllTuyen();
+            if(id!=null)
+            {
+                ViewBag.XeByMaTuyen = Xe.GetAllBusByMaTuyen((int)id);
+            }
             return View();
         }
-
-      
-
     }
 }

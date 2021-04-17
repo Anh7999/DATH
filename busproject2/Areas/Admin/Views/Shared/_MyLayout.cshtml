@@ -886,7 +886,9 @@
         </script>*@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&callback=initMap&libraries=&v=weekly"
             async></script>
-    <script>var sub_handle = $('.sub-handle');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+    var sub_handle = $('.sub-handle');
         var sub_nav_ul_li = $('nav .mainmenu .sub-li');
         sub_handle.on('click', function () {
             $(this).find(".submenu").toggleClass('showing-sub');
@@ -894,8 +896,22 @@
         });
         sub_nav_ul_li.on('click', function () {
             $(this).parent().toggleClass('showing-sub');
-            alert("sadfadsf");
         });</script>
+    <script>
+        function test() {
+            var selected = document.getElementById("selecttuyen");
+            $.ajax({
+                url: "/Admin/Map/Index", // gửi ajax đến file result.php
+                type: "get", // chọn phương thức gửi là post
+                data: {
+                    id: selected.value
+                },
+                success: function (result) {
+                    $('body').html(result);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 

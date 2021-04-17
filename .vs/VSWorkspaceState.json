@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\busproject2",
+    "\\busproject2\\Models"
   ],
-  "SelectedNode": "\\busproject2.sln",
+  "SelectedNode": "\\busproject2\\Models\\Xe.cs",
   "PreviewInSolutionExplorer": false
 }

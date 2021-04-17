@@ -1,6 +1,8 @@
 namespace busproject2.Models
 {
+    using System.Linq;
     using System;
+    using System.Data.Entity;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -46,13 +48,13 @@ namespace busproject2.Models
         public virtual TuyenXe TuyenXe { get; set; }
 
 
-        public static List<Xe> getAllTuyen()
+        public static List<Xe> GetAllBusByMaTuyen(int maTuyen)
         {
             List<Xe> tuyenXes = new List<Xe>();
             using (var db = new Model1())
             {
-                
-                var query = from b in db.Xes select b;
+
+                var query = db.Xes.Where(b => b.MaTuyen == maTuyen).Include(m => m.TaiXe).Include(m => m.TuyenXe).Include(m => m.ChiTietVeBans).ToList();
                 foreach (var item in query)
                 {
                     tuyenXes.Add(item);
