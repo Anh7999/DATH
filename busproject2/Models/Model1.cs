@@ -17,6 +17,7 @@ namespace busproject2.Models
         public virtual DbSet<ChiTietLoTrinh> ChiTietLoTrinhs { get; set; }
         public virtual DbSet<ChiTietVeBan> ChiTietVeBans { get; set; }
         public virtual DbSet<LoaiViPham> LoaiViPhams { get; set; }
+   
         public virtual DbSet<TaiXe> TaiXes { get; set; }
         public virtual DbSet<TuyenXe> TuyenXes { get; set; }
         public virtual DbSet<VeXe> VeXes { get; set; }
@@ -39,6 +40,14 @@ namespace busproject2.Models
 
             modelBuilder.Entity<Account>()
                 .Property(e => e.SDT)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Ben>()
+                .Property(e => e.lat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Ben>()
+                .Property(e => e._long)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Ben>()

@@ -44,21 +44,5 @@ namespace busproject2.Models
         public virtual TaiXe TaiXe { get; set; }
 
         public virtual TuyenXe TuyenXe { get; set; }
-
-
-        public static List<Xe> getAllTuyen()
-        {
-            List<Xe> tuyenXes = new List<Xe>();
-            using (var db = new Model1())
-            {
-                
-                var query = from b in db.Xes select b;
-                foreach (var item in query)
-                {
-                    tuyenXes.Add(item);
-                }
-            }
-            return tuyenXes;
-        }
     }
 }
