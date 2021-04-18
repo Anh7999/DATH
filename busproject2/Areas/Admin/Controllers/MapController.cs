@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace busproject2.Areas.Admin.Controllers
 {
-    public class MapController : Controller
+    public class MapController : BaseController
     {
         // GET: Admin/Map
         private Model1 db = new Model1();

@@ -108,9 +108,10 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="" />
+                            @*<img alt="image" class="rounded-circle" src="~/Areas/Admin/Conntent/admin.png" style=""/>*@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 @*<span class="block m-t-xs font-bold">David Williams</span>*@
+                                <span  class="block m-t-xs font-bold">Welcome:  @Session["Name"]</span>
 
                             </a>
 
@@ -162,7 +163,7 @@
 
 
                         <li>
-                            <a href="login.html">
+                            <a href="@Url.Action("Logout","Login")">
                                 <i class="fa fa-sign-out"></i> Đăng Xuất
                             </a>
                         </li>

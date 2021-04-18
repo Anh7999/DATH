@@ -128,8 +128,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BensController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\MapController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiXesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TuyenXesController.cs" />
@@ -141,11 +143,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Help\Functions.cs" />
-    <Compile Include="Migrations\202104131142063_AddAddressToStudent.cs" />
-    <Compile Include="Migrations\202104131142063_AddAddressToStudent.Designer.cs">
-      <DependentUpon>202104131142063_AddAddressToStudent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Ben.cs" />
     <Compile Include="Models\ChiTietLoTrinh.cs" />
@@ -160,6 +157,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Conntent\admin.png" />
     <Content Include="Areas\Admin\Conntent\css\animate.css" />
     <Content Include="Areas\Admin\Conntent\css\bootstrap.css" />
     <Content Include="Areas\Admin\Conntent\css\bootstrap.min.css" />
@@ -3379,6 +3377,7 @@
     <Content Include="Areas\Admin\Views\Bens\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Bens\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Bens\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -3490,6 +3489,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -3501,11 +3501,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104131142063_AddAddressToStudent.resx">
-      <DependentUpon>202104131142063_AddAddressToStudent.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -10,7 +10,7 @@ using busproject2.Models;
 
 namespace busproject2.Areas.Admin.Controllers
 {
-    public class TuyenXesController : Controller
+    public class TuyenXesController : BaseController
     {
         private Model1 db = new Model1();
 

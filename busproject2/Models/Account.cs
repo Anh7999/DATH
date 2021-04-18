@@ -30,5 +30,11 @@ namespace busproject2.Models
         public bool? GioiTinh { get; set; }
 
         public DateTime? NgaySinh { get; set; }
+
+        [StringLength(50)]
+        public string Access { get; set; }
+
+        [StringLength(50)]
+        public string Status { get; set; }
     }
 }
