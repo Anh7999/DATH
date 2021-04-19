@@ -7,6 +7,7 @@ namespace busproject2.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using Newtonsoft.Json;
 
     [Table("Xe")]
     public partial class Xe
@@ -41,12 +42,12 @@ namespace busproject2.Models
         public string _long { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<ChiTietVeBan> ChiTietVeBans { get; set; }
-
+        [JsonIgnore]
         public virtual TaiXe TaiXe { get; set; }
-
+        [JsonIgnore]
         public virtual TuyenXe TuyenXe { get; set; }
-<<<<<<< HEAD
 
 
         public static List<Xe> GetAllBusByMaTuyen(int maTuyen)
@@ -54,16 +55,31 @@ namespace busproject2.Models
             List<Xe> tuyenXes = new List<Xe>();
             using (var db = new Model1())
             {
-
+                db.Configuration.ProxyCreationEnabled = false;
                 var query = db.Xes.Where(b => b.MaTuyen == maTuyen).Include(m => m.TaiXe).Include(m => m.TuyenXe).Include(m => m.ChiTietVeBans).ToList();
                 foreach (var item in query)
                 {
                     tuyenXes.Add(item);
                 }
+                db.Configuration.LazyLoadingEnabled = false;
             }
             return tuyenXes;
         }
-=======
->>>>>>> 83c3816032b1ff0a1877be82162878be36d92794
+        public static List<Xe> GetAllBus()
+        {
+            List<Xe> tuyenXes = new List<Xe>();
+            using (var db = new Model1())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                var query = db.Xes.Include(m => m.TaiXe).Include(m => m.TuyenXe).Include(m => m.ChiTietVeBans).ToList();
+                foreach (var item in query)
+                {
+                    tuyenXes.Add(item);
+                }
+                db.Configuration.LazyLoadingEnabled = false;
+            }
+            return tuyenXes;
+        }
+
     }
 }

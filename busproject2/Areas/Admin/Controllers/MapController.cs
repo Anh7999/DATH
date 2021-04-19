@@ -1,4 +1,5 @@
 ﻿using busproject2.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace busproject2.Areas.Admin.Controllers
             {
                 ViewBag.XeByMaTuyen = Xe.GetAllBusByMaTuyen((int)id);
             }
+            ViewBag.ListXe = JsonConvert.SerializeObject(Xe.GetAllBus());
             return View();
         }
     }

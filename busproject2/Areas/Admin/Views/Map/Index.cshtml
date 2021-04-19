@@ -57,6 +57,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                      
                                             @if (ViewBag.XeByMaTuyen != null)
                                             {
                                                 foreach (var item in ViewBag.XeByMaTuyen)
@@ -78,7 +79,7 @@
                                                             @item.TuyenXe.TenTuyen
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btn btn-primary">Xem vị trí hiện tại</button>
+                                                            <button onclick="return GetCurPosition(@item.MaXe)" type="button" class="btn btn-primary">Xem vị trí hiện tại</button>
                                                         </td>
                                                     </tr>
                                                 }
