@@ -2,7 +2,7 @@
 <html>
 
 <head>
-
+    @using Newtonsoft.Json;
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,32 +13,16 @@
         #map {
             height: 800px;
         }
+
         .submenu {
             display: none;
         }
 
-        .submenu.showing-sub {
-            display: block;
-        }
+            .submenu.showing-sub {
+                display: block;
+            }
     </style>
-    <script>
-        let map;
 
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: -34.397, lng: 150.644 },
-                zoom: 8,
-            });
-            const image = "~/Areas/Admin/Conntent/Myimg/google-maps-bus-icon-14 (1).jpg"
-            new google.maps.Marker({
-                position: { lat: -34.397, lng: 150.644 },
-                map,
-                title: "Hello World!",
-/*  *//*              icon: image,*/
-            });
-        }
-        
-    </script>
     <title>Quản Lý Xe Bus</title>
 
     <link href="~/Areas/admin/Conntent/css/bootstrap.min.css" rel="stylesheet">
@@ -111,7 +95,7 @@
                             @*<img alt="image" class="rounded-circle" src="~/Areas/Admin/Conntent/admin.png" style=""/>*@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 @*<span class="block m-t-xs font-bold">David Williams</span>*@
-                                <span  class="block m-t-xs font-bold">Welcome:  @Session["Name"]</span>
+                                <span class="block m-t-xs font-bold">Welcome:  @Session["Name"]</span>
 
                             </a>
 
@@ -887,7 +871,201 @@
         </script>*@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&callback=initMap&libraries=&v=weekly"
             async></script>
-    <script>var sub_handle = $('.sub-handle');
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&libraries=geometry&callback=initMap">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        let map;
+        /*var startPos = [42.42679066670903, -83.29210638999939];*/
+        var startPos = [10.770863, 106.699064];
+        var speed = 1000; // km/h
+
+        var delay = 100;
+        // If you set the delay below 1000ms and you go to another tab,
+        // the setTimeout function will wait to be the active tab again
+        // before running the code.
+        // See documentation :
+        // https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout#Inactive_tabs
+
+        function animateMarker(marker, coords, km_h) {
+            var target = 0;
+            var km_h = km_h || 50;
+            coords.push([startPos[0], startPos[1]]);
+
+            function goToPoint() {
+                var lat = marker.position.lat();
+                var lng = marker.position.lng();
+                var step = (km_h * 1000 * delay) / 3600000; // in meters
+
+                var dest = new google.maps.LatLng(
+                    coords[target][0], coords[target][1]);
+
+                var distance =
+                    google.maps.geometry.spherical.computeDistanceBetween(
+                        dest, marker.position); // in meters
+
+                var numStep = distance / step;
+                var i = 0;
+                var deltaLat = (coords[target][0] - lat) / numStep;
+                var deltaLng = (coords[target][1] - lng) / numStep;
+
+                function moveMarker() {
+                    lat += deltaLat;
+                    lng += deltaLng;
+                    i += step;
+                    if (i < distance) {
+                        marker.setPosition(new google.maps.LatLng(lat, lng));
+                        setTimeout(moveMarker, delay);
+                        map.setCenter(new google.maps.LatLng(lat, lng))
+                    }
+                    else {
+                        marker.setPosition(dest);
+                        target++;
+                        if (target == coords.length) { target = 0; }
+                        setTimeout(goToPoint, delay);
+                    }
+                }
+                moveMarker();
+            }
+            goToPoint();
+        }
+
+       var data = JSON.parse('@Html.Raw(ViewBag.ListXe)')
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: startPos[0], lng: startPos[1] },
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            const image = "~/Areas/Admin/Conntent/Myimg/google-maps-bus-icon-14 (1).jpg"
+            data.forEach(item => {
+                console.log(parseFloat(item.lat))
+                    var marker = new google.maps.Marker({
+                      map: map,
+                        position: { lat: parseFloat(item.lat), lng: parseFloat(item._long) },
+                        title: 'Hello World!'
+                    });
+            })
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(startPos[0], startPos[1]),
+                map: map
+            });
+            google.maps.event.addListenerOnce(map, 'idle', function () {
+                animateMarker(marker, [
+                    // The coordinates of each point you want the marker to go to.
+                    // You don't need to specify the starting position again.
+
+                    //[42.42666395645802, -83.29694509506226],
+                    //[42.42300508749226, -83.29679489135742],
+                    //[42.42304468678425, -83.29434871673584],
+                    //[42.424882066428424, -83.2944130897522],
+                    //[42.42495334300206, -83.29203128814697]
+                    [10.770863, 106.699064],
+                    [10.771015, 106.699101],
+                    [10.771666, 106.698776],
+                    [10.771621, 106.700501],
+                    [10.771769, 106.700780],
+                    [10.772285, 106.701850],
+                    [10.772796, 106.702601],
+                    [10.774109, 106.703900],
+                    [10.774233, 106.703771],
+                    [10.775390, 106.704836],
+                    [10.775303, 106.705882],
+                    [10.774976, 106.706079],
+                    [10.774822, 106.706208],
+                    [10.774801, 106.706468],
+                    [10.774854, 106.706632],
+                    [10.773548, 106.706559],
+                    [10.776074, 106.706716],
+                    [10.779847, 106.707682],
+                    [10.780450, 106.707835],
+                    [10.776074, 106.706716],
+                    [10.775884, 106.706539],
+                    [10.775864, 106.706336],
+                    [10.775803, 106.706175],
+                    [10.775708, 106.706060],
+                    [10.778522,106.702872],
+                    [10.776603, 106.701273],
+                    [10.774435, 106.703533],
+                    [10.773668, 106.702809],
+                    [10.773433, 106.702327],
+                    [10.771826, 106.703032],
+                    [10.770920, 106.703423],
+                    [10.770925, 106.703109],
+                    [10.770996, 106.701851],
+
+                    [10.771071, 106.700205],
+
+                    [10.771030, 106.701095],
+                    [10.770631, 106.701261],
+                    [10.769460, 106.699942],
+                    [10.769800, 106.699693],
+                    [10.769750, 106.699519],
+                    [10.769882, 106.699436],
+
+
+                    [10.769473, 106.699920],
+                    [10.769254, 106.699689],
+                    [10.767660, 106.698033],
+                    [10.769280, 106.696445],
+                    [10.768755, 106.695899],
+
+
+                    [10.767269, 106.694777],
+
+                    [10.763769, 106.691705],
+
+                    [10.761567, 106.689942],
+                    //Tổng  công ty samco
+                    [10.7612208, 106.6894366],
+
+                    //chợ nancy
+                    [10.757542,106.686183],
+
+                    [10.756484, 106.685222],
+
+                    [10.755784, 106.682868],
+
+                    [10.755549, 106.681876],
+
+                    [10.755273, 106.680732],
+
+                    [10.754599, 106.678270],
+
+                    [10.754015, 106.676226],
+
+                    [10.753464, 106.674266],
+
+                    [10.753460,106.674225]
+
+
+
+
+
+
+
+
+                ], speed);
+            });
+        }
+        function GetCurPosition(Maxe) {
+            var CurPosition = {};
+            console.log(Maxe)
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].Maxe)
+                if (data[i].MaXe == Maxe) {
+                    CurPosition = { lat: parseFloat(data[i].lat), lng: parseFloat(data[i]._long) };
+                }
+            }
+
+            map.setCenter(CurPosition)
+        }
+
+    </script>
+    <script>
+        var sub_handle = $('.sub-handle');
         var sub_nav_ul_li = $('nav .mainmenu .sub-li');
         sub_handle.on('click', function () {
             $(this).find(".submenu").toggleClass('showing-sub');
@@ -895,8 +1073,22 @@
         });
         sub_nav_ul_li.on('click', function () {
             $(this).parent().toggleClass('showing-sub');
-            alert("sadfadsf");
         });</script>
+    <script>
+        function test() {
+            var selected = document.getElementById("selecttuyen");
+            $.ajax({
+                url: "/Admin/Map/Index", // gửi ajax đến file result.php
+                type: "get", // chọn phương thức gửi là post
+                data: {
+                    id: selected.value
+                },
+                success: function (result) {
+                    $('body').html(result);
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 
