@@ -5,86 +5,71 @@
     Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
 }
 
+<h2>Details</h2>
 
+<div>
+    <h4>Xe</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiXe.HoTen)
+        </dt>
 
-<h2>Chi Tiết Xe</h2>
-<div class="row">
-    <div class="col-lg-12">
-        <div class="ibox ">
-            <div class="ibox-content">
+        <dd>
+            @Html.DisplayFor(model => model.TaiXe.HoTen)
+        </dd>
 
-                <form method="get" style="margin-left:350px">
-                    
+        <dt>
+            @Html.DisplayNameFor(model => model.TuyenXe.TenTuyen)
+        </dt>
 
-                    <div class="form-group row">
+        <dd>
+            @Html.DisplayFor(model => model.TuyenXe.TenTuyen)
+        </dd>
 
-                        <dt>Tuyến Xe</dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.BienSo)
+        </dt>
 
-                        <div class="col-sm-10" style="margin-left:10px">
-                            @Html.DisplayFor(model => model.MaTuyen)
-                        </div>
-                    </div>
+        <dd>
+            @Html.DisplayFor(model => model.BienSo)
+        </dd>
 
-                    <div class="form-group row">
-                        <dt>
-                            Biển Số
-                        </dt>
-                        <div class="col-sm-10" style="margin-left:10px">
-                            @Html.DisplayFor(model => model.BienSo)
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.LoaiXe)
+        </dt>
 
-                    <div class="form-group row">
-                        <dt>
-                            Tình Trạng Xe
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LoaiXe)
+        </dd>
 
-                        <div class="col-sm-10" style="margin-left:50px">
-                            @Html.DisplayFor(model => model.TinhTrangXe)
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrangXe)
+        </dt>
 
-                    <div class="form-group row">
-                        <dt>
-                            Lat
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrangXe)
+        </dd>
 
-                        <div class="col-sm-10" style="margin-left:50px">
-                            @Html.DisplayFor(model => model.lat)
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.lat)
+        </dt>
 
-                    <div class="form-group row">
-                        <dt>
-                            Long
-                        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.lat)
+        </dd>
 
-                        <div class="col-sm-10" style="margin-left:50px">
-                            @Html.DisplayFor(model => model._long)
-                        </div>
-                    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model._long)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model._long)
+        </dd>
 
-                    <div class="form-group row">
-                        <dt>
-                            Loại Xe
-                        </dt>
-
-                        <div class="col-sm-10" style="margin-left:50px">
-                            @Html.DisplayFor(model => model.LoaiXe)
-                        </div>
-                    </div>
-
-                </form>
-                <div class="form-group row">
-                    <div class="col-sm-4 col-sm-offset-2">
-                        <button class="btn btn-primary btn-sm">   @Html.ActionLink("Chỉnh Sửa Xe", "Edit", new { id = Model.MaXe })</button>
-                        <button class="btn btn-white btn-sm" type="submit">  @Html.ActionLink("Quay Lại", "Index")</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+    </dl>
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaXe }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

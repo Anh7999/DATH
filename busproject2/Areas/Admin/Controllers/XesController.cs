@@ -10,14 +10,14 @@ using busproject2.Models;
 
 namespace busproject2.Areas.Admin.Controllers
 {
-    public class XesController : BaseController
+    public class XesController : Controller
     {
         private Model1 db = new Model1();
 
         // GET: Admin/Xes
         public ActionResult Index()
         {
-            var xes = db.Xes.Include(x => x.TuyenXe);
+            var xes = db.Xes.Include(x => x.TaiXe).Include(x => x.TuyenXe);
             return View(xes.ToList());
         }
 
@@ -39,6 +39,7 @@ namespace busproject2.Areas.Admin.Controllers
         // GET: Admin/Xes/Create
         public ActionResult Create()
         {
+            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen");
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen");
             return View();
         }
@@ -48,7 +49,7 @@ namespace busproject2.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,_long,lat,MaTuyen")] Xe xe)
+        public ActionResult Create([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,MaTuyen,MaTaiXe,lat,_long")] Xe xe)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +58,7 @@ namespace busproject2.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen", xe.MaTuyen);
             return View(xe);
         }
@@ -73,6 +75,7 @@ namespace busproject2.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen", xe.MaTuyen);
             return View(xe);
         }
@@ -82,7 +85,7 @@ namespace busproject2.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,_long,lat,MaTuyen")] Xe xe)
+        public ActionResult Edit([Bind(Include = "MaXe,BienSo,LoaiXe,TinhTrangXe,MaTuyen,MaTaiXe,lat,_long")] Xe xe)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +93,7 @@ namespace busproject2.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen", xe.MaTuyen);
             return View(xe);
         }
