@@ -16,6 +16,7 @@ namespace busproject2.Models
         public virtual DbSet<Ben> Bens { get; set; }
         public virtual DbSet<ChiTietLoTrinh> ChiTietLoTrinhs { get; set; }
         public virtual DbSet<ChiTietVeBan> ChiTietVeBans { get; set; }
+        public virtual DbSet<LichTrinh> LichTrinhs { get; set; }
         public virtual DbSet<LoaiViPham> LoaiViPhams { get; set; }
         public virtual DbSet<TaiXe> TaiXes { get; set; }
         public virtual DbSet<TuyenXe> TuyenXes { get; set; }
@@ -42,12 +43,9 @@ namespace busproject2.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Account>()
-                .Property(e => e.Access)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Account>()
-                .Property(e => e.Status)
-                .IsUnicode(false);
+                .HasMany(e => e.ChiTietVeBans)
+                .WithRequired(e => e.Account)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Ben>()
                 .Property(e => e.lat)
@@ -80,17 +78,22 @@ namespace busproject2.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaiXe>()
-                .HasMany(e => e.ViPhams)
+                .HasMany(e => e.LichTrinhs)
                 .WithRequired(e => e.TaiXe)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TaiXe>()
-                .HasMany(e => e.Xes)
+                .HasMany(e => e.ViPhams)
                 .WithRequired(e => e.TaiXe)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<TuyenXe>()
                 .HasMany(e => e.ChiTietLoTrinhs)
+                .WithRequired(e => e.TuyenXe)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<TuyenXe>()
+                .HasMany(e => e.LichTrinhs)
                 .WithRequired(e => e.TuyenXe)
                 .WillCascadeOnDelete(false);
 
@@ -113,11 +116,11 @@ namespace busproject2.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Xe>()
-                .Property(e => e.lat)
+                .Property(e => e._long)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Xe>()
-                .Property(e => e._long)
+                .Property(e => e.lat)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Xe>()

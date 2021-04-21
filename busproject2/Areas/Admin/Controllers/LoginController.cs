@@ -35,9 +35,9 @@ namespace busproject2.Areas.Admin.Controllers
             string username = collection["username"];
             string password = collection["password"];
 
-            Account rowuset = db.Accounts.Where(m=>m.Status == "1" && m.Access== "1" && (m.TenTaiKhoan == username || m.Email == username))
+            Account rowuset = db.Accounts.Where(m => m.Status == 1 && m.Access == 1 && (m.TenTaiKhoan == username || m.Email == username))
                 .FirstOrDefault();
-            if(rowuset==null)
+            if (rowuset == null)
             {
                 strerror = "Ten Dang Nhap Khong Ton Tai";
             }
@@ -56,7 +56,7 @@ namespace busproject2.Areas.Admin.Controllers
                     strerror = "Mat Khau Khong Dnubg";
                 }
             }
-        
+
             ViewBag.Error = strerror;
 
 
@@ -93,9 +93,9 @@ namespace busproject2.Areas.Admin.Controllers
         {
             Session["UserAdmin"] = "";
             Session["UserId"] = "";
-            Session["Name"] ="";
+            Session["Name"] = "";
             return RedirectToAction("Login", "Login");
-          
+
         }
     }
 }

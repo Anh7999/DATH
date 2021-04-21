@@ -1,5 +1,6 @@
 namespace busproject2.Models
 {
+
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace busproject2.Models
         public TuyenXe()
         {
             ChiTietLoTrinhs = new HashSet<ChiTietLoTrinh>();
+            LichTrinhs = new HashSet<LichTrinh>();
             Xes = new HashSet<Xe>();
         }
 
@@ -31,13 +33,15 @@ namespace busproject2.Models
         [StringLength(50)]
         public string LoaiTuyen { get; set; }
 
-        public int SoTuyen { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietLoTrinh> ChiTietLoTrinhs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichTrinh> LichTrinhs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Xe> Xes { get; set; }
+
         public static List<TuyenXe> getAllTuyen()
         {
             List<TuyenXe> tuyenXes = new List<TuyenXe>();
