@@ -13,9 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TaiXe.HoTen)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.TuyenXe.TenTuyen)
         </th>
         <th>
@@ -28,19 +25,16 @@
             @Html.DisplayNameFor(model => model.TinhTrangXe)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lat)
+            @Html.DisplayNameFor(model => model._long)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model._long)
+            @Html.DisplayNameFor(model => model.lat)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaiXe.HoTen)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TuyenXe.TenTuyen)
         </td>
@@ -54,10 +48,10 @@
             @Html.DisplayFor(modelItem => item.TinhTrangXe)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.lat)
+            @Html.DisplayFor(modelItem => item._long)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item._long)
+            @Html.DisplayFor(modelItem => item.lat)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MaXe }) |
