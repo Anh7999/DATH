@@ -1,0 +1,1094 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    @using Newtonsoft.Json;
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 800px;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+            .submenu.showing-sub {
+                display: block;
+            }
+    </style>
+
+    <title>Quản Lý Xe Bus</title>
+
+    <link href="~/Areas/admin/Conntent/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/animate.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/style.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    @*<link href="~/Areas/admin/Conntent/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet">*@
+
+
+    <link href="~/Areas/admin/Conntent/css/plugins/iCheck/custom.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/chosen/bootstrap-chosen.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/colorpicker/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/cropper/cropper.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/switchery/switchery.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/nouslider/jquery.nouislider.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/ionRangeSlider/ion.rangeSlider.css" rel="stylesheet">
+    <link href="~/Areas/admin/Conntent/css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/select2/select2.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/touchspin/jquery.bootstrap-touchspin.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/dualListbox/bootstrap-duallistbox.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/dropzone/basic.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/dropzone/dropzone.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/jasny/jasny-bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/Areas/admin/Conntent/css/plugins/codemirror/codemirror.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            @*<img alt="image" class="rounded-circle" src="~/Areas/Admin/Conntent/admin.png" style=""/>*@
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                @*<span class="block m-t-xs font-bold">David Williams</span>*@
+                                <span class="block m-t-xs font-bold">Welcome:  @Session["Name"]</span>
+
+                            </a>
+
+                        </div>
+                        <div class="logo-element">
+                            BUS+
+                        </div>
+                    </li>
+
+
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","TuyenXes")"><i class="fa fa-diamond"></i> Quản Lý Tuyến Xe</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","Xes")"><i class="fa fa-diamond"></i> Quản Lý Xe</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","TaiXes")"><i class="fa fa-diamond"></i> Quản Lý Tài Xế</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","VeXes")"><i class="fa fa-diamond"></i> Quản Lý Vé Xe</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","Bens")"><i class="fa fa-diamond"></i> Quản Lý Bến Xe</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="@Url.Action("Index","Map")"><i class="fa fa-diamond"></i> Quản Lý Vị Trí Xe</a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                        @*<form role="search" class="navbar-form-custom" action="search_results.html">
+                                <div class="form-group">
+                                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
+                                </div>
+                            </form>*@
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+
+
+
+
+
+                        <li>
+                            <a href="@Url.Action("Logout","Login")">
+                                <i class="fa fa-sign-out"></i> Đăng Xuất
+                            </a>
+                        </li>
+                        <li>
+                            <a class="right-sidebar-toggle">
+                                <i class="fa fa-tasks"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+            </div>
+
+            @*<div class="row">
+                <div class="col-lg-12">
+                    <div class="wrapper wrapper-content">*@
+            @RenderBody()
+            @*</div>
+
+                    </div>
+                </div>*@
+            <div class="footer">
+                <div class="float-right">
+
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Areas/admin/Conntent/js/jquery-3.1.1.min.js"></script>
+    <script src="~/Areas/admin/Conntent/js/popper.min.js"></script>
+    <script src="~/Areas/admin/Conntent/js/bootstrap.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Flot -->
+    <script src="~/Areas/admin/Conntent/js/plugins/flot/jquery.flot.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/flot/jquery.flot.spline.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/flot/jquery.flot.resize.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/flot/jquery.flot.pie.js"></script>
+
+    <!-- Peity -->
+    <script src="~/Areas/admin/Conntent/js/plugins/peity/jquery.peity.min.js"></script>
+    <script src="~/Areas/admin/Conntent/js/demo/peity-demo.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="~/Areas/admin/Conntent/js/inspinia.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/pace/pace.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="~/Areas/admin/Conntent/js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+    <!-- GITTER -->
+    <script src="~/Areas/admin/Conntent/js/plugins/gritter/jquery.gritter.min.js"></script>
+
+    <!-- Sparkline -->
+    <script src="~/Areas/admin/Conntent/js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Sparkline demo data  -->
+    <script src="~/Areas/admin/Conntent/js/demo/sparkline-demo.js"></script>
+
+    <!-- ChartJS-->
+    <script src="~/Areas/admin/Conntent/js/plugins/chartJs/Chart.min.js"></script>
+
+    <!-- Toastr -->
+    <script src="~/Areas/admin/Conntent/js/plugins/toastr/toastr.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="~/Areas/admin/Conntent/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/clockpicker/clockpicker.js"></script>
+
+    @*<script defer src="~/Areas/Admin/Conntent/fontawesome-free-5.15.3-web/js/all.js"></script>*@
+
+    <script src="~/Areas/admin/Conntent/js/plugins/chosen/chosen.jquery.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/jsKnob/jquery.knob.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/nouslider/jquery.nouislider.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/switchery/switchery.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/iCheck/icheck.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/clockpicker/clockpicker.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/cropper/cropper.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/fullcalendar/moment.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/select2/select2.full.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/touchspin/jquery.bootstrap-touchspin.min.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
+
+    <script src="~/Areas/admin/Conntent/js/plugins/codemirror/mode/xml/xml.js"></script>
+
+
+    <script src="~/Areas/admin/Conntent/js/plugins/codemirror/codemirror.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('.clockpicker').clockpicker();
+
+
+            $(".select2_demo_3").select2({
+                placeholder: "--Chọn--",
+                allowClear: true
+            });
+
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'ExampleFile' },
+                    { extend: 'pdf', title: 'ExampleFile' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+
+
+            var data1 = [
+                [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
+            ];
+            var data2 = [
+                [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
+            ];
+            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                data1, data2
+            ],
+                {
+                    series: {
+                        lines: {
+                            show: false,
+                            fill: true
+                        },
+                        splines: {
+                            show: true,
+                            tension: 0.4,
+                            lineWidth: 1,
+                            fill: 0.4
+                        },
+                        points: {
+                            radius: 0,
+                            show: true
+                        },
+                        shadowSize: 2
+                    },
+                    grid: {
+                        hoverable: true,
+                        clickable: true,
+                        tickColor: "#d5d5d5",
+                        borderWidth: 1,
+                        color: '#d5d5d5'
+                    },
+                    colors: ["#1ab394", "#1C84C6"],
+                    xaxis: {
+                    },
+                    yaxis: {
+                        ticks: 4
+                    },
+                    tooltip: false
+                }
+            );
+
+            var doughnutData = {
+                labels: ["App", "Software", "Laptop"],
+                datasets: [{
+                    data: [300, 50, 100],
+                    backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+                }]
+            };
+
+
+            var doughnutOptions = {
+                responsive: false,
+                legend: {
+                    display: false
+                }
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+            new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+
+            var doughnutData = {
+                labels: ["App", "Software", "Laptop"],
+                datasets: [{
+                    data: [70, 27, 85],
+                    backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+                }]
+            };
+
+
+            var doughnutOptions = {
+                responsive: false,
+                legend: {
+                    display: false
+                }
+            };
+
+
+            var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+            new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+
+        });
+
+
+        $('.tagsinput').tagsinput({
+            tagClass: 'label label-primary'
+        });
+
+        var $image = $(".image-crop > img")
+        $($image).cropper({
+            aspectRatio: 1.618,
+            preview: ".img-preview",
+            done: function (data) {
+                // Output the result data for cropping image.
+            }
+        });
+
+        var $inputImage = $("#inputImage");
+        if (window.FileReader) {
+            $inputImage.change(function () {
+                var fileReader = new FileReader(),
+                    files = this.files,
+                    file;
+
+                if (!files.length) {
+                    return;
+                }
+
+                file = files[0];
+
+                if (/^image\/\w+$/.test(file.type)) {
+                    fileReader.readAsDataURL(file);
+                    fileReader.onload = function () {
+                        $inputImage.val("");
+                        $image.cropper("reset", true).cropper("replace", this.result);
+                    };
+                } else {
+                    showMessage("Please choose an image file.");
+                }
+            });
+        } else {
+            $inputImage.addClass("hide");
+        }
+
+        $("#download").click(function () {
+            window.open($image.cropper("getDataURL"));
+        });
+
+        $("#zoomIn").click(function () {
+            $image.cropper("zoom", 0.1);
+        });
+
+        $("#zoomOut").click(function () {
+            $image.cropper("zoom", -0.1);
+        });
+
+        $("#rotateLeft").click(function () {
+            $image.cropper("rotate", 45);
+        });
+
+        $("#rotateRight").click(function () {
+            $image.cropper("rotate", -45);
+        });
+
+        $("#setDrag").click(function () {
+            $image.cropper("setDragMode", "crop");
+        });
+
+        var mem = $('#data_1 .input-group.date').datepicker({
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            calendarWeeks: true,
+            autoclose: true
+        });
+
+        var yearsAgo = new Date();
+        yearsAgo.setFullYear(yearsAgo.getFullYear() - 20);
+
+        $('#selector').datepicker('setDate', yearsAgo);
+
+
+        $('#data_2 .input-group.date').datepicker({
+            startView: 1,
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            autoclose: true,
+            format: "dd/mm/yyyy"
+        });
+
+        $('#data_3 .input-group.date').datepicker({
+            startView: 2,
+            todayBtn: "linked",
+            keyboardNavigation: false,
+            forceParse: false,
+            autoclose: true
+        });
+
+        $('#data_4 .input-group.date').datepicker({
+            minViewMode: 1,
+            keyboardNavigation: false,
+            forceParse: false,
+            forceParse: false,
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $('#data_5 .input-daterange').datepicker({
+            keyboardNavigation: false,
+            forceParse: false,
+            autoclose: true
+        });
+
+        var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, { color: '#1AB394' });
+
+        var elem_2 = document.querySelector('.js-switch_2');
+        var switchery_2 = new Switchery(elem_2, { color: '#ED5565' });
+
+        var elem_3 = document.querySelector('.js-switch_3');
+        var switchery_3 = new Switchery(elem_3, { color: '#1AB394' });
+
+        var elem_4 = document.querySelector('.js-switch_4');
+        var switchery_4 = new Switchery(elem_4, { color: '#f8ac59' });
+        switchery_4.disable();
+
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green'
+        });
+
+        $('.demo1').colorpicker();
+
+        var divStyle = $('.back-change')[0].style;
+        $('#demo_apidemo').colorpicker({
+            color: divStyle.backgroundColor
+        }).on('changeColor', function (ev) {
+            divStyle.backgroundColor = ev.color.toHex();
+        });
+
+        $('.clockpicker').clockpicker();
+
+        $('input[name="daterange"]').daterangepicker();
+
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+
+        $('#reportrange').daterangepicker({
+            format: 'MM/DD/YYYY',
+            startDate: moment().subtract(29, 'days'),
+            endDate: moment(),
+            minDate: '01/01/2012',
+            maxDate: '12/31/2015',
+            dateLimit: { days: 60 },
+            showDropdowns: true,
+            showWeekNumbers: true,
+            timePicker: false,
+            timePickerIncrement: 1,
+            timePicker12Hour: true,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            },
+            opens: 'right',
+            drops: 'down',
+            buttonClasses: ['btn', 'btn-sm'],
+            applyClass: 'btn-primary',
+            cancelClass: 'btn-default',
+            separator: ' to ',
+            locale: {
+                applyLabel: 'Submit',
+                cancelLabel: 'Cancel',
+                fromLabel: 'From',
+                toLabel: 'To',
+                customRangeLabel: 'Custom',
+                daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                firstDay: 1
+            }
+        }, function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        });
+
+        $(".select2_demo_1").select2();
+        $(".select2_demo_2").select2();
+        $(".select2_demo_3").select2({
+            placeholder: "Select a state",
+            allowClear: true
+        });
+
+
+        $(".touchspin1").TouchSpin({
+            buttondown_class: 'btn btn-white',
+            buttonup_class: 'btn btn-white'
+        });
+
+        $(".touchspin2").TouchSpin({
+            min: 0,
+            max: 100,
+            step: 0.1,
+            decimals: 2,
+            boostat: 5,
+            maxboostedstep: 10,
+            postfix: '%',
+            buttondown_class: 'btn btn-white',
+            buttonup_class: 'btn btn-white'
+        });
+
+        //     $(".touchspin3").TouchSpin({
+        //         verticalbuttons: true,
+        //         buttondown_class: 'btn btn-white',
+        //         buttonup_class: 'btn btn-white'
+        //     });
+
+        //     $('.dual_select').bootstrapDualListbox({
+        //         selectorMinimalHeight: 160
+        //     });
+
+
+        // });
+
+        $('.chosen-select').chosen({ width: "100%" });
+
+        $("#ionrange_1").ionRangeSlider({
+            min: 0,
+            max: 5000,
+            type: 'double',
+            prefix: "$",
+            maxPostfix: "+",
+            prettify: false,
+            hasGrid: true
+        });
+
+        $("#ionrange_2").ionRangeSlider({
+            min: 0,
+            max: 10,
+            type: 'single',
+            step: 0.1,
+            postfix: " carats",
+            prettify: false,
+            hasGrid: true
+        });
+
+        $("#ionrange_3").ionRangeSlider({
+            min: -50,
+            max: 50,
+            from: 0,
+            postfix: "°",
+            prettify: false,
+            hasGrid: true
+        });
+
+        $("#ionrange_4").ionRangeSlider({
+            values: [
+                "January", "February", "March",
+                "April", "May", "June",
+                "July", "August", "September",
+                "October", "November", "December"
+            ],
+            type: 'single',
+            hasGrid: true
+        });
+
+        $("#ionrange_5").ionRangeSlider({
+            min: 10000,
+            max: 100000,
+            step: 100,
+            postfix: " km",
+            from: 55000,
+            hideMinMax: true,
+            hideFromTo: false
+        });
+
+        $(".dial").knob();
+
+        var basic_slider = document.getElementById('basic_slider');
+
+        noUiSlider.create(basic_slider, {
+            start: 40,
+            behaviour: 'tap',
+            connect: 'upper',
+            range: {
+                'min': 20,
+                'max': 80
+            }
+        });
+
+        var range_slider = document.getElementById('range_slider');
+
+        noUiSlider.create(range_slider, {
+            start: [40, 60],
+            behaviour: 'drag',
+            connect: true,
+            range: {
+                'min': 20,
+                'max': 80
+            }
+        });
+
+        var drag_fixed = document.getElementById('drag-fixed');
+
+        noUiSlider.create(drag_fixed, {
+            start: [40, 60],
+            behaviour: 'drag-fixed',
+            connect: true,
+            range: {
+                'min': 20,
+                'max': 80
+            }
+        });
+
+        Dropzone.options.dropzoneForm = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 2, // MB
+            dictDefaultMessage: "<strong>Drop files here or click to upload. </strong></br> (This is just a demo dropzone. Selected files are not actually uploaded.)"
+        };
+
+        $(document).ready(function () {
+
+            var editor_one = CodeMirror.fromTextArea(document.getElementById("code1"), {
+                lineNumbers: true,
+                matchBrackets: true
+            });
+
+            var editor_two = CodeMirror.fromTextArea(document.getElementById("code2"), {
+                lineNumbers: true,
+                matchBrackets: true
+            });
+
+            var editor_two = CodeMirror.fromTextArea(document.getElementById("code3"), {
+                lineNumbers: true,
+                matchBrackets: true
+            });
+
+            var editor_two = CodeMirror.fromTextArea(document.getElementById("code4"), {
+                lineNumbers: true,
+                matchBrackets: true
+            });
+
+
+            $('.custom-file-input').on('change', function () {
+                let fileName = $(this).val().split('\\').pop();
+                $(this).next('.custom-file-label').addClass("selected").html(fileName);
+            });
+
+        });
+    </script>
+
+    @*<script>
+            $(document).ready(function () {
+                //setTimeout(function() {
+                //    toastr.options = {
+                //        closeButton: true,
+                //        progressBar: true,
+                //        showMethod: 'slideDown',
+                //        timeOut: 4000
+                //    };
+                //    toastr.success( 'Chào');
+
+                //}, 1300);
+
+
+
+                var data1 = [
+                    [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
+                ];
+                var data2 = [
+                    [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
+                ];
+                $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                    data1, data2
+                ],
+                    {
+                        series: {
+                            lines: {
+                                show: false,
+                                fill: true
+                            },
+                            splines: {
+                                show: true,
+                                tension: 0.4,
+                                lineWidth: 1,
+                                fill: 0.4
+                            },
+                            points: {
+                                radius: 0,
+                                show: true
+                            },
+                            shadowSize: 2
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#d5d5d5",
+                            borderWidth: 1,
+                            color: '#d5d5d5'
+                        },
+                        colors: ["#1ab394", "#1C84C6"],
+                        xaxis: {
+                        },
+                        yaxis: {
+                            ticks: 4
+                        },
+                        tooltip: false
+                    }
+                );
+
+                var doughnutData = {
+                    labels: ["App", "Software", "Laptop"],
+                    datasets: [{
+                        data: [300, 50, 100],
+                        backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+                    }]
+                };
+
+
+                var doughnutOptions = {
+                    responsive: false,
+                    legend: {
+                        display: false
+                    }
+                };
+
+
+                var ctx4 = document.getElementById("doughnutChart").getContext("2d");
+                new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+
+                var doughnutData = {
+                    labels: ["App", "Software", "Laptop"],
+                    datasets: [{
+                        data: [70, 27, 85],
+                        backgroundColor: ["#a3e1d4", "#dedede", "#9CC3DA"]
+                    }]
+                };
+
+
+                var doughnutOptions = {
+                    responsive: false,
+                    legend: {
+                        display: false
+                    }
+                };
+
+
+                var ctx4 = document.getElementById("doughnutChart2").getContext("2d");
+                new Chart(ctx4, { type: 'doughnut', data: doughnutData, options: doughnutOptions });
+
+                $('.dataTables-example').DataTable({
+                    pageLength: 25,
+                    responsive: true,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [
+                        { extend: 'copy' },
+                        { extend: 'csv' },
+                        { extend: 'excel', title: 'ExampleFile' },
+                        { extend: 'pdf', title: 'ExampleFile' },
+
+                        {
+                            extend: 'print',
+                            customize: function (win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+
+                                $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                            }
+                        }
+                    ]
+
+                });
+
+            });
+        </script>*@
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&libraries=geometry&callback=initMap">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        let map;
+        /*var startPos = [42.42679066670903, -83.29210638999939];*/
+        var startPos = [10.770863, 106.699064];
+        var speed = 1000; // km/h
+
+        var delay = 100;
+        // If you set the delay below 1000ms and you go to another tab,
+        // the setTimeout function will wait to be the active tab again
+        // before running the code.
+        // See documentation :
+        // https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout#Inactive_tabs
+
+        function animateMarker(marker, coords, km_h) {
+            var target = 0;
+            var km_h = km_h || 50;
+            coords.push([startPos[0], startPos[1]]);
+
+            function goToPoint() {
+                var lat = marker.position.lat();
+                var lng = marker.position.lng();
+                var step = (km_h * 1000 * delay) / 3600000; // in meters
+
+                var dest = new google.maps.LatLng(
+                    coords[target][0], coords[target][1]);
+
+                var distance =
+                    google.maps.geometry.spherical.computeDistanceBetween(
+                        dest, marker.position); // in meters
+
+                var numStep = distance / step;
+                var i = 0;
+                var deltaLat = (coords[target][0] - lat) / numStep;
+                var deltaLng = (coords[target][1] - lng) / numStep;
+
+                function moveMarker() {
+                    lat += deltaLat;
+                    lng += deltaLng;
+                    i += step;
+                    if (i < distance) {
+                        marker.setPosition(new google.maps.LatLng(lat, lng));
+                        setTimeout(moveMarker, delay);
+                        map.setCenter(new google.maps.LatLng(lat, lng))
+                    }
+                    else {
+                        marker.setPosition(dest);
+                        target++;
+                        if (target == coords.length) { target = 0; }
+                        setTimeout(goToPoint, delay);
+                    }
+                }
+                moveMarker();
+            }
+            goToPoint();
+        }
+
+       var data = JSON.parse('@Html.Raw(ViewBag.ListXe)')
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: startPos[0], lng: startPos[1] },
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            const image = "~/Areas/Admin/Conntent/Myimg/google-maps-bus-icon-14 (1).jpg"
+            data.forEach(item => {
+                console.log(parseFloat(item.lat))
+                    var marker = new google.maps.Marker({
+                      map: map,
+                        position: { lat: parseFloat(item.lat), lng: parseFloat(item._long) },
+                        title: 'Hello World!'
+                    });
+            })
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(startPos[0], startPos[1]),
+                map: map
+            });
+            google.maps.event.addListenerOnce(map, 'idle', function () {
+                animateMarker(marker, [
+                    // The coordinates of each point you want the marker to go to.
+                    // You don't need to specify the starting position again.
+
+                    //[42.42666395645802, -83.29694509506226],
+                    //[42.42300508749226, -83.29679489135742],
+                    //[42.42304468678425, -83.29434871673584],
+                    //[42.424882066428424, -83.2944130897522],
+                    //[42.42495334300206, -83.29203128814697]
+                    [10.770863, 106.699064],
+                    [10.771015, 106.699101],
+                    [10.771666, 106.698776],
+                    [10.771621, 106.700501],
+                    [10.771769, 106.700780],
+                    [10.772285, 106.701850],
+                    [10.772796, 106.702601],
+                    [10.774109, 106.703900],
+                    [10.774233, 106.703771],
+                    [10.775390, 106.704836],
+                    [10.775303, 106.705882],
+                    [10.774976, 106.706079],
+                    [10.774822, 106.706208],
+                    [10.774801, 106.706468],
+                    [10.774854, 106.706632],
+                    [10.773548, 106.706559],
+                    [10.776074, 106.706716],
+                    [10.779847, 106.707682],
+                    [10.780450, 106.707835],
+                    [10.776074, 106.706716],
+                    [10.775884, 106.706539],
+                    [10.775864, 106.706336],
+                    [10.775803, 106.706175],
+                    [10.775708, 106.706060],
+                    [10.778522,106.702872],
+                    [10.776603, 106.701273],
+                    [10.774435, 106.703533],
+                    [10.773668, 106.702809],
+                    [10.773433, 106.702327],
+                    [10.771826, 106.703032],
+                    [10.770920, 106.703423],
+                    [10.770925, 106.703109],
+                    [10.770996, 106.701851],
+
+                    [10.771071, 106.700205],
+
+                    [10.771030, 106.701095],
+                    [10.770631, 106.701261],
+                    [10.769460, 106.699942],
+                    [10.769800, 106.699693],
+                    [10.769750, 106.699519],
+                    [10.769882, 106.699436],
+
+
+                    [10.769473, 106.699920],
+                    [10.769254, 106.699689],
+                    [10.767660, 106.698033],
+                    [10.769280, 106.696445],
+                    [10.768755, 106.695899],
+
+
+                    [10.767269, 106.694777],
+
+                    [10.763769, 106.691705],
+
+                    [10.761567, 106.689942],
+                    //Tổng  công ty samco
+                    [10.7612208, 106.6894366],
+
+                    //chợ nancy
+                    [10.757542,106.686183],
+
+                    [10.756484, 106.685222],
+
+                    [10.755784, 106.682868],
+
+                    [10.755549, 106.681876],
+
+                    [10.755273, 106.680732],
+
+                    [10.754599, 106.678270],
+
+                    [10.754015, 106.676226],
+
+                    [10.753464, 106.674266],
+
+                    [10.753460,106.674225]
+
+
+
+
+
+
+
+
+                ], speed);
+            });
+        }
+        function GetCurPosition(Maxe) {
+            var CurPosition = {};
+            console.log(Maxe)
+            for (var i = 0; i < data.length; i++) {
+                console.log(data[i].Maxe)
+                if (data[i].MaXe == Maxe) {
+                    CurPosition = { lat: parseFloat(data[i].lat), lng: parseFloat(data[i]._long) };
+                }
+            }
+
+            map.setCenter(CurPosition)
+        }
+
+    </script>
+    <script>
+        var sub_handle = $('.sub-handle');
+        var sub_nav_ul_li = $('nav .mainmenu .sub-li');
+        sub_handle.on('click', function () {
+            $(this).find(".submenu").toggleClass('showing-sub');
+            $(this).find(".sub-li").toggleClass("smooth-anchor");
+        });
+        sub_nav_ul_li.on('click', function () {
+            $(this).parent().toggleClass('showing-sub');
+        });</script>
+    <script>
+        function test() {
+            var selected = document.getElementById("selecttuyen");
+            $.ajax({
+                url: "/Admin/Map/Index", // gửi ajax đến file result.php
+                type: "get", // chọn phương thức gửi là post
+                data: {
+                    id: selected.value
+                },
+                success: function (result) {
+                    $('body').html(result);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+

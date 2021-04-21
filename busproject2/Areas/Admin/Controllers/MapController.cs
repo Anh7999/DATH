@@ -1,5 +1,4 @@
-﻿
-using busproject2.Models;
+﻿using busproject2.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

@@ -1,3 +1,4 @@
+
 namespace busproject2.Models
 {
     using System.Linq;
@@ -47,7 +48,6 @@ namespace busproject2.Models
         [JsonIgnore]
         public virtual TuyenXe TuyenXe { get; set; }
 
-       
 
         public static List<Xe> GetAllBusByMaTuyen(int maTuyen)
         {
@@ -81,5 +81,4 @@ namespace busproject2.Models
         }
 
     }
-
 }

@@ -1,0 +1,149 @@
+﻿@model busproject2.Models.TaiXe
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_MyLayout.cshtml";
+}
+
+
+
+<h2>Chi Tiết Tài Xế</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="ibox ">
+            <div class="ibox-content">
+
+                <form method="get" style="margin-left:350px">
+                    <div class="form-group  row">
+                        <dt>
+                            Họ Tên
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:60px">
+                            @Html.DisplayFor(model => model.HoTen)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+
+                        <dt>Ngày Sinh</dt>
+
+                        <div class="col-sm-10" style="margin-left:10px">
+                            @Html.DisplayFor(model => model.NgaySinh)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <dt>
+                            Giới Tính
+                        </dt>
+                        <div class="col-sm-10" style="margin-left:10px">
+                            @Html.DisplayFor(model => model.GioiTinh)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <dt>
+                            Số Điện Thoại
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.SDT)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                            Gmail
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.Gmail)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                            Hình Ảnh
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.HinhAnh)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                            Quê Quán
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.QueQuan)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <dt>
+                            Địa Chỉ
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.DiaChi)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                            Ngày Bắt Đầu Hợp Đồng
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.NgayBatDauHopDong)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                            Ngày Kết Thúc Hợp Đồng
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.NgayKetThucHopDong)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                            Lương
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.Luong)
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <dt>
+                            Bằng Lái
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.BangLai)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <dt>
+                          Chức Vụ
+                        </dt>
+
+                        <div class="col-sm-10" style="margin-left:50px">
+                            @Html.DisplayFor(model => model.ChucVu)
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group row">
+                    <div class="col-sm-4 col-sm-offset-2">
+                        <button class="btn btn-primary btn-sm">   @Html.ActionLink("Chỉnh Sửa Tai Xe", "Edit", new { id = Model.MaTaiXe })</button>
+                        <button class="btn btn-white btn-sm" type="submit">  @Html.ActionLink("Quay Lại", "Index")</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
