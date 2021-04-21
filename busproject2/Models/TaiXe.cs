@@ -12,8 +12,8 @@ namespace busproject2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiXe()
         {
+            LichTrinhs = new HashSet<LichTrinh>();
             ViPhams = new HashSet<ViPham>();
-            Xes = new HashSet<Xe>();
         }
 
         [Key]
@@ -54,9 +54,9 @@ namespace busproject2.Models
         public string ChucVu { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ViPham> ViPhams { get; set; }
+        public virtual ICollection<LichTrinh> LichTrinhs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Xe> Xes { get; set; }
+        public virtual ICollection<ViPham> ViPhams { get; set; }
     }
 }

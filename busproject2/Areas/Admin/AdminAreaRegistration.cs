@@ -14,10 +14,19 @@ namespace busproject2.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+
+            context.MapRoute(
+               "AdminLogin",
+               "Admin/Login",
+               new { Controller = "Login", action = "Login", id = UrlParameter.Optional }
+           );
+
+          
+
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { Controller="Default" ,action = "Index", id = UrlParameter.Optional }
             );
         }
     }

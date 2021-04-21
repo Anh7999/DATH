@@ -1,7 +1,14 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\busproject2",
+    "\\busproject2\\Areas",
+    "\\busproject2\\Areas\\Admin",
+    "\\busproject2\\Areas\\Admin\\Views",
+    "\\busproject2\\Areas\\Admin\\Views\\Map",
+    "\\busproject2\\Areas\\Admin\\Views\\Shared",
+    "\\busproject2\\Models"
   ],
-  "SelectedNode": "\\busproject2.sln",
+  "SelectedNode": "\\busproject2\\Areas\\Admin\\Views\\Map\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
