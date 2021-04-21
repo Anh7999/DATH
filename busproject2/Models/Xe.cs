@@ -40,9 +40,14 @@ namespace busproject2.Models
         public int MaTuyen { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<ChiTietVeBan> ChiTietVeBans { get; set; }
-
+        [JsonIgnore]
+        public virtual TaiXe TaiXe { get; set; }
+        [JsonIgnore]
         public virtual TuyenXe TuyenXe { get; set; }
+
+       
 
         public static List<Xe> GetAllBusByMaTuyen(int maTuyen)
         {

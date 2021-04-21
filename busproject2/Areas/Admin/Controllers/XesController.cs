@@ -58,7 +58,7 @@ namespace busproject2.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
+            //ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen", xe.MaTuyen);
             return View(xe);
         }
@@ -75,7 +75,7 @@ namespace busproject2.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
+            //ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen", xe.MaTuyen);
             return View(xe);
         }
@@ -93,7 +93,7 @@ namespace busproject2.Areas.Admin.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
+            //ViewBag.MaTaiXe = new SelectList(db.TaiXes, "MaTaiXe", "HoTen", xe.MaTaiXe);
             ViewBag.MaTuyen = new SelectList(db.TuyenXes, "MaTuyen", "TenTuyen", xe.MaTuyen);
             return View(xe);
         }
