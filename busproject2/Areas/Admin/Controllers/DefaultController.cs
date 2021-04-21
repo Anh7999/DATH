@@ -6,11 +6,15 @@ using System.Web.Mvc;
 
 namespace busproject2.Areas.Admin.Controllers
 {
-    public class DefaultController : Controller
+    public class DefaultController : BaseController
     {
         // GET: Admin/Default
         public ActionResult Index()
         {
+
+            
+          
+
             return View();
         }
 

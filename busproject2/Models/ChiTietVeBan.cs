@@ -11,6 +11,8 @@ namespace busproject2.Models
     {
         public DateTime? NgayBan { get; set; }
 
+        public DateTime? NgayHetHan { get; set; }
+
         public int? SoLuongVeBan { get; set; }
 
         [Key]
@@ -22,6 +24,13 @@ namespace busproject2.Models
         [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int MaXe { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int MaTaiKhoan { get; set; }
+
+        public virtual Account Account { get; set; }
 
         public virtual VeXe VeXe { get; set; }
 

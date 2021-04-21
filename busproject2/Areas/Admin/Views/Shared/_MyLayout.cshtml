@@ -22,7 +22,7 @@
                 display: block;
             }
     </style>
-   
+
     <title>Quản Lý Xe Bus</title>
 
     <link href="~/Areas/admin/Conntent/css/bootstrap.min.css" rel="stylesheet">
@@ -92,9 +92,10 @@
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="" />
+                            @*<img alt="image" class="rounded-circle" src="~/Areas/Admin/Conntent/admin.png" style=""/>*@
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 @*<span class="block m-t-xs font-bold">David Williams</span>*@
+                                <span class="block m-t-xs font-bold">Welcome:  @Session["Name"]</span>
 
                             </a>
 
@@ -146,7 +147,7 @@
 
 
                         <li>
-                            <a href="login.html">
+                            <a href="@Url.Action("Logout","Login")">
                                 <i class="fa fa-sign-out"></i> Đăng Xuất
                             </a>
                         </li>
@@ -955,7 +956,7 @@
                 animateMarker(marker, [
                     // The coordinates of each point you want the marker to go to.
                     // You don't need to specify the starting position again.
-                   
+
                     //[42.42666395645802, -83.29694509506226],
                     //[42.42300508749226, -83.29679489135742],
                     //[42.42304468678425, -83.29434871673584],
