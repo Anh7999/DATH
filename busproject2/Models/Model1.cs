@@ -42,6 +42,14 @@ namespace busproject2.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Ben>()
+                .Property(e => e.lat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Ben>()
+                .Property(e => e._long)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Ben>()
                 .HasMany(e => e.ChiTietLoTrinhs)
                 .WithRequired(e => e.Ben)
                 .WillCascadeOnDelete(false);
