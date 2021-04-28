@@ -22,6 +22,7 @@ namespace busproject2.Areas.Admin.Controllers
                 ViewBag.XeByMaTuyen = Xe.GetAllBusByMaTuyen((int)id);
             }
             ViewBag.ListXe = JsonConvert.SerializeObject(Xe.GetAllBus());
+            //ViewBag.ListTuyen.ListTuyenJs = JsonConvert.SerializeObject(TuyenXe.getAllTuyen());
             return View();
         }
     }

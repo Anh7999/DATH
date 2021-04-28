@@ -126,5 +126,3 @@ C:\Users\PHUOC-PC\Source\Repos\DATH\busproject2\obj\Debug\busproject2.csproj.Cor
 C:\Users\PHUOC-PC\Source\Repos\DATH\busproject2\obj\Debug\busproject2.csproj.CopyComplete
 C:\Users\PHUOC-PC\Source\Repos\DATH\busproject2\obj\Debug\busproject2.dll
 C:\Users\PHUOC-PC\Source\Repos\DATH\busproject2\obj\Debug\busproject2.pdb
-C:\Users\PHUOC-PC\Source\Repos\DATH\busproject2\obj\Debug\busproject2.Migrations.AddAddressToStudent.resources
-C:\Users\PHUOC-PC\Source\Repos\DATH\busproject2\obj\Debug\busproject2.csproj.GenerateResource.cache
