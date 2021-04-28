@@ -43,11 +43,8 @@ namespace busproject2.Models
         [JsonIgnore]
         public virtual ICollection<ChiTietVeBan> ChiTietVeBans { get; set; }
         [JsonIgnore]
-        public virtual TaiXe TaiXe { get; set; }
-        [JsonIgnore]
         public virtual TuyenXe TuyenXe { get; set; }
 
-        public virtual TuyenXe TuyenXe { get; set; }
 
         public static List<Xe> GetAllBusByMaTuyen(int maTuyen)
         {

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace busproject2.Areas.Admin.Controllers
 {
-    public class MapController : Controller
+    public class MapController : BaseController
     {
         // GET: Admin/Map
         private Model1 db = new Model1();
@@ -22,6 +22,7 @@ namespace busproject2.Areas.Admin.Controllers
                 ViewBag.XeByMaTuyen = Xe.GetAllBusByMaTuyen((int)id);
             }
             ViewBag.ListXe = JsonConvert.SerializeObject(Xe.GetAllBus());
+            //ViewBag.ListTuyen.ListTuyenJs = JsonConvert.SerializeObject(TuyenXe.getAllTuyen());
             return View();
         }
     }

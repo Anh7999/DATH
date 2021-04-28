@@ -869,99 +869,20 @@
 
             });
         </script>*@
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&callback=initMap&libraries=&v=weekly"
-            async></script>
-    <script async
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&libraries=geometry&callback=initMap">
-    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&callback=initMap&libraries=geometry&v=weekly"
+                async></script>
+        @*<script async
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCX_x52fuFr9zlgvGACCDSE08laggrk18k&libraries=geometry&callback=initMap">
+        </script>*@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
 
         let map;
         /*var startPos = [42.42679066670903, -83.29210638999939];*/
         var startPos = [10.770863, 106.699064];
-        var speed = 1000; // km/h
-
-        var delay = 100;
-        // If you set the delay below 1000ms and you go to another tab,
-        // the setTimeout function will wait to be the active tab again
-        // before running the code.
-        // See documentation :
-        // https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setTimeout#Inactive_tabs
-
-        function animateMarker(marker, coords, km_h) {
-            var target = 0;
-            var km_h = km_h || 50;
-            coords.push([startPos[0], startPos[1]]);
-
-            function goToPoint() {
-                var lat = marker.position.lat();
-                var lng = marker.position.lng();
-                var step = (km_h * 1000 * delay) / 3600000; // in meters
-
-                var dest = new google.maps.LatLng(
-                    coords[target][0], coords[target][1]);
-
-                var distance =
-                    google.maps.geometry.spherical.computeDistanceBetween(
-                        dest, marker.position); // in meters
-
-                var numStep = distance / step;
-                var i = 0;
-                var deltaLat = (coords[target][0] - lat) / numStep;
-                var deltaLng = (coords[target][1] - lng) / numStep;
-
-                function moveMarker() {
-                    lat += deltaLat;
-                    lng += deltaLng;
-                    i += step;
-                    if (i < distance) {
-                        marker.setPosition(new google.maps.LatLng(lat, lng));
-                        setTimeout(moveMarker, delay);
-                        map.setCenter(new google.maps.LatLng(lat, lng))
-                    }
-                    else {
-                        marker.setPosition(dest);
-                        target++;
-                        if (target == coords.length) { target = 0; }
-                        setTimeout(goToPoint, delay);
-                    }
-                }
-                moveMarker();
-            }
-            goToPoint();
-        }
-
-       var data = JSON.parse('@Html.Raw(ViewBag.ListXe)')
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("map"), {
-                center: { lat: startPos[0], lng: startPos[1] },
-                zoom: 16,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
-            const image = "~/Areas/Admin/Conntent/Myimg/google-maps-bus-icon-14 (1).jpg"
-            data.forEach(item => {
-                console.log(parseFloat(item.lat))
-                    var marker = new google.maps.Marker({
-                      map: map,
-                        position: { lat: parseFloat(item.lat), lng: parseFloat(item._long) },
-                        title: 'Hello World!'
-                    });
-            })
-            marker = new google.maps.Marker({
-                position: new google.maps.LatLng(startPos[0], startPos[1]),
-                map: map
-            });
-            google.maps.event.addListenerOnce(map, 'idle', function () {
-                animateMarker(marker, [
-                    // The coordinates of each point you want the marker to go to.
-                    // You don't need to specify the starting position again.
-
-                    //[42.42666395645802, -83.29694509506226],
-                    //[42.42300508749226, -83.29679489135742],
-                    //[42.42304468678425, -83.29434871673584],
-                    //[42.424882066428424, -83.2944130897522],
-                    //[42.42495334300206, -83.29203128814697]
+        let listLichTrinh = [{
+            MaTuyen: 2, LichTrinh: {
+                luotdi: [
                     [10.770863, 106.699064],
                     [10.771015, 106.699101],
                     [10.771666, 106.698776],
@@ -986,7 +907,7 @@
                     [10.775864, 106.706336],
                     [10.775803, 106.706175],
                     [10.775708, 106.706060],
-                    [10.778522,106.702872],
+                    [10.778522, 106.702872],
                     [10.776603, 106.701273],
                     [10.774435, 106.703533],
                     [10.773668, 106.702809],
@@ -1022,7 +943,7 @@
                     [10.7612208, 106.6894366],
 
                     //chợ nancy
-                    [10.757542,106.686183],
+                    [10.757542, 106.686183],
 
                     [10.756484, 106.685222],
 
@@ -1038,28 +959,658 @@
 
                     [10.753464, 106.674266],
 
-                    [10.753460,106.674225]
+                    [10.753460, 106.674225],
 
 
+                    //- Rạp Đống đa - đồng khánh
+                    [10.753128, 106.672819],
+                    [10.752970, 106.672084],
+                    [10.752913, 106.671490],
+
+                    //-> Nhà văn hóa quận 5
+                    [10.752724, 106.669483],
+                    [10.753223, 106.669478],
+                    [10.753455, 106.669534],
+                    [10.753010, 106.668638],
+
+                    //-> Ngô Quyền
+                    [10.752722, 106.668054],
+                    [10.752622, 106.667941],
+                    [10.752580, 106.667855],
+                    [10.752414, 106.666128],
+
+                    //-> tản đà
+                    [10.752358, 106.665533],
+                    [10.752321, 106.665005],
+                    [10.752275, 106.664376],
+                    [10.752217, 106.663767],
+
+                    //-> Trieu quang phuc
+                    [10.752160, 106.663031],
+                    [10.752114, 106.662646],
+                    [10.752027, 106.661503],
+                    [10.752022, 106.660572],
+                    //-> Buu dien quan 5
+                    [10.752014, 106.660025],
+                    [10.751998, 106.659084],
+                    [10.752038, 106.658899],
+                    [10.752004, 106.658848],
+                    [10.751394, 106.658967],
+                    //-> hai thuong lang ong
+                    [10.750843, 106.659093],
+                    [10.750796, 106.659029],
+                    [10.750865, 106.658463],
+                    // -> Cho kim bien
+                    [10.750889, 106.657948],
+                    [10.750902, 106.657476],
+                    [10.750989, 106.656623],
+                    [10.751010, 106.656435],
+                    [10.750997, 106.655963],
+                    [10.751018, 106.655469],
+                    [10.751055, 106.655075],
+                    // -> ben xe cho lon
+                    [10.751088, 106.654456],
+                    [10.751093, 106.653809],
+                    [10.751446, 106.653501],
+                    [10.751662, 106.653249],
+                    [10.751651, 106.653174],
+                    [10.751611, 106.653177],
+                    [10.751558, 106.653170],
+                    [10.751523, 106.653169],
+                    [10.751468, 106.653153],
+                    [10.751431, 106.653125],
+                    [10.751409, 106.653103],
+                    [10.751348, 106.652966],
+                    [10.751276, 106.652575],
+                ], luotve: [
+                    //Bến xe chợ lớn -> chu văn an
+                    [10.751317, 106.652834],
+                    [10.751368, 106.653031],
+                    [10.751410, 106.653104],
+                    [10.751454, 106.653144],
+                    [10.751465, 106.653149],
+                    [10.751520, 106.653170],
+                    [10.751635, 106.653180],
+                    [10.751654, 106.653274],
+                    [10.750720, 106.653335],
+                    [10.750455, 106.653394],
+                    [10.750282, 106.652532],
+                    //Chu văn an -> chợ kim biên
+                    [10.750335, 106.652806],
+                    [10.750543, 106.653860],
+                    [10.750592, 106.654081],
+                    [10.750605, 106.654137],
+                    [10.750758, 106.654530],
+                    [10.750810, 106.654771],
+                    [10.750813, 106.654797],
+                    [10.750814, 106.654871],
+                    [10.750809, 106.654944],
+                    [10.750808, 106.655074],
+                   // Chợ kiêm biên -> bưu điện Q5
+                    [10.750582, 106.654059],
+                    [10.750589, 106.654097],
+                    [10.750755, 106.654531],
+                    [10.750810, 106.654788],
+                    [10.750817, 106.654862],
+                    [10.750805, 106.654946],
+                    [10.750793, 106.655711],
+                    [10.750808, 106.656474],
+                    [10.750715, 106.657414],
+                    [10.750681, 106.658399],
+                    [10.750634, 106.659019],
+                    [10.750627, 106.659059],
+                    [10.750602, 106.659088],
+                    [10.750592, 106.659114],
+                    [10.750585, 106.659152],
+                    [10.750613, 106.659243],
+                    [10.750751, 106.659287],
+                    [10.750852, 106.659193],
+                    [10.751359, 106.659110],
+                   // Rạp đại quang
+                    [10.751969, 106.659009],
+                    [10.752048, 106.658921],
+                    [10.752370, 106.658866],
+                   // Lương nhữ học
+                    [10.752974, 106.658752],
+                    [10.752994, 106.658900],
+                    [10.753034, 106.659951],
+                    [10.753026, 106.660414],
+                 //   Triệu quang phục
+                    [10.753018, 106.660687],
+                    [10.753043, 106.660809],
+                    [10.753050, 106.661385],
+                    [10.753063, 106.661706],
+                   // Đại học sư phạm kỹ thuật thể thao
+                    [10.753285, 106.662806],
+                    [10.753433, 106.663701],
+                  //  Siêu thị điện máy chợ lớn
+                    [10.753557, 106.664365],
+                  //  Ngô quyền
+                    [10.753289, 106.662840],
+                    [10.753516, 106.664140],
+                    [10.753992, 106.666530],
+                    [10.754047, 106.666877],
+
+                    //Chung cư nguyễn trãi
+                    [10.753293, 106.662855],
+                    [10.753520, 106.664190],
+                    [10.753987, 106.666522],
+                    [10.754003, 106.666581],
+                    [10.754050, 106.666932],
+                    [10.754071, 106.667112],
+                    [10.754195, 106.667590],
+                    [10.754224, 106.667763],
+                    [10.754381, 106.668563],
+                   // Siêu thị điện máy
+                    [10.754436, 106.668870],
+                    [10.754607, 106.669521],
+                    [10.754017, 106.669488],
+                  //  Nhà văn hóa quận 5
+                    [10.753728, 106.669462],
+                    [10.753441, 106.669457],
+                    [10.753291, 106.669220],
+                    [10.753001, 106.668643],
+                   // Đồng khánh
+                    [10.752835, 106.668348],
+                    [10.752612, 106.668412],
+                    [10.752684, 106.669284],
+                    [10.752663, 106.669403],
+                    [10.752658, 106.669465],
+                    [10.752741, 106.670408],
+                    //An bình
+                    [10.752783, 106.671051],
+                    [10.752866, 106.671887],
+                    [10.752893, 106.672098],
+                    [10.753006, 106.672621],
+                   // Rạp đồng tháp
+                    [10.753186, 106.673426],
+                    [10.753548, 106.674750],
+                    [10.753669, 106.675095],
+                    [10.753794, 106.675648],
+                    [10.753946, 106.676209],
+                   // Bệnh viện chấn thương chỉnh hình
+                    [10.754504, 106.678249],
+                   // Trần bình trọng
+                    [10.754704, 106.678960],
+                    [10.754809, 106.679270],
+                    [10.755001, 106.680016],
+                   // Nguyễn Biểu
+                    [10.755361, 106.681385],
+                    [10.755660, 106.682478],
+                    [10.755920, 106.683624],
+                    [10.756136, 106.684350],
+                   // Chợ nanci
+                    [10.756376, 106.685125],
+                    [10.756378, 106.685166],
+                    [10.756432, 106.685260],
+                    [10.757156, 106.685889],
+                   // Tổng công ty Samco
+                    [10.757618, 106.686306],
+                    [10.759373, 106.687883],
+                   // Sở pccc
+                    [10.760702, 106.689052],
+                  //  Hồ hảo lớn
+                    [10.761606, 106.689844],
+                    [10.762579, 106.690638],
+                   // Bệnh viện răng hàm mặt
+                    [10.763627, 106.691553],
+                   // Rạp trần hưng đạo
+                    [10.765283, 106.693018],
+                   // Ktx trần hưng đạo
+                    [10.765913, 106.693541],
+                    [10.765959, 106.693573],
+                    [10.766667, 106.694304],
+                    [10.766967, 106.694564],
+                    [10.767248, 106.694780],
+                   // Nguyễn Kim
+                    [10.767897, 106.695340],
+                    [10.768298, 106.695722],
+                   // Trạm trung chuyển trên đường hàm nghi
+                    [10.769230, 106.696459],
+                    [10.769322, 106.696581],
+                    [10.769322, 106.696581],
+                    [10.770161, 106.697397],
+                    [10.770204, 106.697474],
+                    [10.770833, 106.699035],
+                    [10.770849, 106.699063],
+                    [10.770916, 106.699185],
+                    [10.770965, 106.699301],
+                    [10.770977, 106.699367],
+                    [10.770940, 106.699403],
+                    [10.770924, 106.699424],
+                    [10.770910, 106.699474],
+                    [10.770855, 106.700571],
+                   // Nam kỳ khởi nghĩa
+                    [10.770801, 106.701987],
+//Chợ cũ
+                    [10.770744, 106.703023],
+                    //Hồ tùng mậu
+                    [10.770704, 106.704073],
+                   // Bến bạch đăng
+                    [10.770670, 106.704574],
+                    [10.770378, 106.704685],
+                    [10.769477, 106.705117],
+                    [10.769661, 106.705640],
+                    [10.769663, 106.705671],
+                    [10.769695, 106.705730],
+                    [10.769754, 106.705803],
+                    [10.769846, 106.705867],
+                    [10.770041, 106.705973],
+                    [10.770086, 106.705994],
+                    [10.770324, 106.706066],
+                    [10.770436, 106.706106],
+                    [10.770472, 106.706130],
+                    [10.770497, 106.706164],
+                    [10.770534, 106.706192],
+                    [10.770671, 106.706217],
+                    [10.770791, 106.706222],
+                    [10.770908, 106.706243],
+                    [10.773642, 106.706545],
+                   // Công trường mê linh
+                    [10.775647, 106.706709],
+                    [10.775845, 106.706533],
+                    [10.775861, 106.706419],
+                    [10.775860, 106.706303],
+                    [10.775827, 106.706216],
+                    [10.775707, 106.706057],
+                    [10.775965, 106.705775],
+
+                    [10.777372, 106.704114],
+                    [10.777630, 106.704365],
+                    [10.778121, 106.704775],
+                    [10.777858, 106.705069],
+                ]
+            }
+            // The coordinates of each point you want the marker to go to.
+            // You don't need to specify the starting position again.
 
 
+        }, {
+            MaTuyen: 3, LichTrinh: {
+                luotdi: [
+                    [10.7709595, 106.6810598],
+                    [10.768806, 106.689658],
+                    [10.768482, 106.689945],
+                    [10.768001, 106.690226],
 
+                    //  -> Nguyen thi nghia
+                    [10.767544, 106.690487],
+                    [10.767544, 106.690487],
+                    [10.768208, 106.692150],
+                    [10.768657, 106.693238],
+                    [10.768902, 106.693853],
 
+                    //  Truogw emtsdam
+                    [10.769187, 106.694583],
+                    [10.769290, 106.694800],
+                    [10.769564, 106.695530],
 
+                    //  Tram chung chuyen tren duong ham nghi
+                    [10.769788, 106.696152],
+                    [10.769211, 106.696458],
+                    [10.769864, 106.697123],
+                    [10.770154, 106.697383],
+                    [10.770225, 106.697536],
+                    [10.770823, 106.698990],
+                    [10.770981, 106.699333],
+                    [10.770928, 106.699381],
+                    [10.770896, 106.699698],
+                    [10.770862, 106.700232],
+                    [10.770884, 106.700374],
 
-                ], speed);
+                    //  Nam ky khoi  nghia
+                    [10.770884, 106.700374],
+                    //  Cho cu
+                    [10.770789, 106.702202],
+                    //  Giao lo ham nghi
+                    [10.770749, 106.703035],
+                    //   Ho tung mau
+                    [10.770702, 106.704105],
+                    //  Ben Bach Dang
+                    [10.770659, 106.704592],
+                    [10.770399, 106.704672],
+                    [10.769518, 106.705088],
+                    [10.769409, 106.705160],
+                    [10.769496, 106.705672],
+                    [10.769586, 106.706026],
+                    [10.769763, 106.706152],
+                    [10.770514, 106.706409],
+                    [10.770756, 106.706334],
+                    [10.774126, 106.706610],
+                    //  Cong truong me linh
+                    [10.775691, 106.706714],
+                    [10.775816, 106.706563],
+                    [10.775858, 106.706330],
+                    [10.775837, 106.706231],
+                    [10.775711, 106.706038],
+                    [10.775950, 106.705789],
+                    //  Nha hat thanh pho
+                    [10.776508, 106.705116],
+                    [10.777351, 106.704156],
+                    [10.777636, 106.703837],
+                    [10.778100, 106.703357],
+                    //  Benh Vien nhi Dong 2
+                    [10.779181, 106.702200],
+                    [10.779865, 106.701437],
+                    ////  Buu Dien Thanh Pho
+                    [10.780542, 106.700731],
+                    //  //  Sơ cong thuong
+                    [10.781517, 106.699564],
+                    [10.783597, 106.697315],
+                    [10.784298, 106.696478],
+
+                    //// Cong vien le van tam
+                    [10.784683, 106.695958],
+                    [10.786459, 106.693700],
+                    [10.787399, 106.692549],
+                    //  Nha tho tan dinh
+                    [10.787910, 106.691884],
+                    [10.789160, 106.690347],
+                    //  Cho tan kieu
+
+                    [10.789787, 106.689564],
+                    [10.790462, 106.688706],
+                    //   Cau kieu
+                    [10.790694, 106.688406],
+                    [10.791126, 106.687933],
+                    [10.792186, 106.686497],
+                    [10.793634, 106.684728],
+                    //  Cho phu nhuan
+                    [10.795012, 106.682969],
+                    //   Truong cao dang kinh te doi ngoai
+                    [10.795839, 106.681938],
+                    [10.795955, 106.681820],
+                    [10.796226, 106.681616],
+                    [10.796492, 106.681474],
+                    [10.797917, 106.680837],
+                    //   Nga Tu phu nhuan
+                    [10.799112, 106.680288],
+                    [10.799328, 106.680186],
+                    [10.799692, 106.680073],
+                    //  Nha Truyen thong
+                    [10.801085, 106.679507],
+                    [10.801971, 106.679212],
+                    [10.802561, 106.679122],
+                    //  Nga ba ho van hue
+                    [10.804642, 106.678771],
+                    [10.805246, 106.678675],
+                    //   Coop nguyen kim
+                    [10.806172, 106.678547],
+                    [10.806906, 106.678455],
+                    [10.807080, 106.678460],
+                    //  Chua van hanh
+                    [10.810276, 106.678465],
+                    // Truong cao dang hai quan
+                    [10.812404, 106.678633],
+                    //  Cau vuot nguyen thai son
+                    [10.813276, 106.678678],
+                    [10.813521, 106.678758],
+                    [10.813748, 106.679058],
+                    [10.813967, 106.679120],
+                    [10.814220, 106.679072],
+                    [10.814357, 106.678925],
+                    [10.814602, 106.679067],
+                    [10.816308, 106.680384],
+                    //  Nga ba pham ngu lao
+                    [10.819721, 106.683042],
+                    // Cau vuot nga sau go vap
+                    [10.820336, 106.683517],
+                    [10.824541, 106.681164],
+                    [10.828966, 106.678754],
+                    // Nga tu phan van tri
+                    [10.830852, 106.677552],
+                    [10.831747, 106.676972],
+                    [10.832028, 106.676812],
+                    [10.832546, 106.676593],
+                    //   Cu xa lam som
+                    [10.834712, 106.675741],
+                    [10.835152, 106.675602],
+                    [10.835521, 106.675532],
+                    [10.836085, 106.675521],
+                    //  Dai liey si
+                    [10.837962, 106.675520],
+                    [10.838492, 106.675548],
+                    [10.838810, 106.675525],
+                    [10.839253, 106.675745],
+                    //  Nga tu an nhon
+                    [10.840957, 106.676279],
+                    [10.841885, 106.676567],
+                    [10.842346, 106.676736],
+                    //   Ben do
+                    [10.846620, 106.678265],
+                    [10.846921, 106.678380],
+                    //  Cau lan loc
+                    [10.847443, 106.678503],
+                    [10.849177, 106.678663],
+                    //  Nha hang ben xua
+                    [10.850241, 106.678730],
+                    [10.852643, 106.679055],
+                    //  Nga tu ga
+                    [10.853849, 106.679275],
+                    [10.854702, 106.679396],
+                    [10.857050, 106.679673],
+                    //  Dinh than gia khua
+                    [10.858345, 106.679892],
+                    [10.859177, 106.680045],
+                    [10.860788, 106.680190],
+                    [10.861793, 106.680269],
+                    [10.864057, 106.680558],
+                    [10.864510, 106.680553],
+                    [10.864921, 106.680491],
+                    [10.865208, 106.680395],
+
+                    //  Cay xang tai loc
+                    [10.865991, 106.680106],
+                    [10.866565, 106.679752],
+                    [10.867018, 106.679444],
+                    [10.867858, 106.678615],
+                    [10.868240, 106.678248],
+                    // Vuon kieng quang dung
+                    [10.868683, 106.677846],
+                    [10.869128, 106.677546],
+                    [10.870165, 106.677080],
+                    [10.870786, 106.676945],
+                    [10.871422, 106.676940],
+                    [10.875058, 106.676842],
+                    //  Gara thanh hau
+                    [10.876202, 106.677117],
+                    [10.878519, 106.678146],
+                    // Cho thanh xuan
+                    [10.880772, 106.679135],
+                    [10.881067, 106.679278],
+                    // Truomg diwn luc 2
+                    [10.884176, 106.680996],
+                    // Nguyen van thue
+                    [10.885451, 106.681838],
+                    [10.886223, 106.682881],
+                    //  Cay xang thanh binh
+                    [10.886493, 106.683291],
+                    // Cau ong dung
+                    [10.887963, 106.684680],
+                    [10.888405, 106.684991],
+                    [10.888766, 106.685134],
+                    //Cau phu long
+                    [10.889754, 106.685480],
+                    [10.890852, 106.686046],
+                    [10.891621, 106.686531],
+                    [10.892119, 106.686912],
+                    // Chua bao an
+                    [10.892962, 106.687561],
+                    [10.893686, 106.688041],
+                    [10.894500, 106.688411],
+                    [10.895482, 106.688789],
+                    // Cho duong
+                    [10.896296, 106.689071],
+                    [10.897128, 106.689084],
+                    [10.897704, 106.689060],
+                    // Thanhj loc
+                    [10.898605, 106.688846]
+                ],luotve:[]}
+                //  Ben xe bus sai gon -> Tôn thất tùng
+ 
+            }]
+        var delay = 100;
+       
+        function animateMarker(marker, coords, isluotve) {
+            if (isluotve == false) {
+                var target = 0;
+                var km_h = Math.floor(Math.random() * 500) + 1000;
+                function goToPoint() {
+                    var lat = marker.position.lat();
+                    var lng = marker.position.lng();
+                    var step = (km_h * 1000 * delay) / 3600000;
+                    var dest = new google.maps.LatLng(
+                        coords.luotdi[target][0], coords.luotdi[target][1]);
+
+                    var distance =
+                        google.maps.geometry.spherical.computeDistanceBetween(
+                            dest, marker.position);
+
+                    var numStep = distance / step;
+                    var i = 0;
+                    var deltaLat = (coords.luotdi[target][0] - lat) / numStep;
+                    var deltaLng = (coords.luotdi[target][1] - lng) / numStep;
+
+                    function moveMarker() {
+                        lat += deltaLat;
+                        lng += deltaLng;
+                        i += step;
+                        if (i < distance) {
+                            marker.setPosition(new google.maps.LatLng(lat, lng));
+                            setTimeout(moveMarker, delay);
+                            /*map.setCenter(new google.maps.LatLng(lat, lng))*/
+                        }
+                        else {
+                            marker.setPosition(dest);
+                            target++;
+                            if (target == coords.luotdi.length) {
+                                km_h = 0;
+                                if (isluotve == false) {
+                                    setTimeout(function () { animateMarker(marker, coords, true); }, 3000);
+                                } else {
+                                    setTimeout(function () { animateMarker(marker, coords, false); }, 3000);
+                                }
+                            }
+                            setTimeout(goToPoint, delay);
+                        }
+                    }
+                    moveMarker();
+                }
+                goToPoint();
+            }
+            else {
+                var target = 0;
+                var km_h = Math.floor(Math.random() * 500) + 1000;
+                function goToPoint() {
+                    var lat = marker.position.lat();
+                    var lng = marker.position.lng();
+                    var step = (km_h * 1000 * delay) / 3600000;
+                    var dest = new google.maps.LatLng(
+                        coords.luotve[target][0], coords.luotve[target][1]);
+
+                    var distance =
+                        google.maps.geometry.spherical.computeDistanceBetween(
+                            dest, marker.position);
+
+                    var numStep = distance / step;
+                    var i = 0;
+                    var deltaLat = (coords.luotve[target][0] - lat) / numStep;
+                    var deltaLng = (coords.luotve[target][1] - lng) / numStep;
+
+                    function moveMarker() {
+                        lat += deltaLat;
+                        lng += deltaLng;
+                        i += step;
+                        if (i < distance) {
+                            marker.setPosition(new google.maps.LatLng(lat, lng));
+                            setTimeout(moveMarker, delay);
+                            /*map.setCenter(new google.maps.LatLng(lat, lng))*/
+                        }
+                        else {
+                            marker.setPosition(dest);
+                            target++;
+                            if (target == coords.luotve.length) {
+                                km_h = 0;
+                                if (isluotve == false) {
+                                    setTimeout(function () { animateMarker(marker, coords, true); }, 3000);
+                                } else {
+                                    setTimeout(function () { animateMarker(marker, coords, false); }, 3000);
+                                }
+                            }
+                            setTimeout(goToPoint, delay);
+                        }
+                    }
+                    moveMarker();
+                }
+                goToPoint();
+            }
+        }
+
+        var data = JSON.parse('@Html.Raw(ViewBag.ListXe)')
+        var temp =[]
+        listLichTrinh.forEach(item => {
+            var temp1 = [];
+            var LichTrinh;
+            for (var i = 0; i < data.length; i++) {
+                if (item.MaTuyen == data[i].MaTuyen) {
+                    LichTrinh = item;
+                    temp1.push(data[i]);
+                    //google.maps.event.addListenerOnce(map, 'idle', function () {
+                    //    animateMarker(new google.maps.Marker({
+                    //        map: map,
+                    //        position: new google.maps.LatLng(startPos[0], startPos[1]),
+                    //        title: 'Hello World!'
+                    //    }), LichTrinh.LichTrinh);
+                    //});
+                }
+            }
+            temp.push({ xe: temp1, lichtrinh: LichTrinh });
+            /*test(temp, LichTrinh)*/
+        })
+        console.log(temp)
+        
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: startPos[0], lng: startPos[1] },
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
             });
+            function test(xes, lichtrinh) {
+                var i = 0;
+                var j = 0;
+                var delay = 30000;
+                function test1() {
+                    if (i < xes.length) {
+                        var curXe = xes[i]
+                        console.log(curXe.BienSo)
+                        google.maps.event.addListenerOnce(map, 'idle', function () {
+                            animateMarker(new google.maps.Marker({
+                                map: map,
+                                position: new google.maps.LatLng(startPos[0], startPos[1]),
+                                title: curXe.BienSo
+                            }), lichtrinh.LichTrinh,false);
+                        });
+                        setTimeout(test1, delay);
+                        delay += 30000;
+                    }
+                    i++;
+                }
+                test1()
+            }
+            temp.forEach(item => {
+                 test(item.xe, item.lichtrinh)
+            })
+
         }
         function GetCurPosition(Maxe) {
             var CurPosition = {};
-            console.log(Maxe)
+     
             for (var i = 0; i < data.length; i++) {
                 console.log(data[i].Maxe)
                 if (data[i].MaXe == Maxe) {
                     CurPosition = { lat: parseFloat(data[i].lat), lng: parseFloat(data[i]._long) };
                 }
             }
-
             map.setCenter(CurPosition)
         }
 
@@ -1078,7 +1629,7 @@
         function test() {
             var selected = document.getElementById("selecttuyen");
             $.ajax({
-                url: "/Admin/Map/Index", // gửi ajax đến file result.php
+                url: "/Admin/Map/Index", // gửi ajax đến file 
                 type: "get", // chọn phương thức gửi là post
                 data: {
                     id: selected.value
